@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8" ng-app="xmp.app"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9" ng-app="xmp.app"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en" ng-app="xmp.app">
+<!--<![endif]-->
+
+<head>
+    <title>Metlife</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Icon -->
+    <link rel="apple-touch-icon" href="img/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="img/favicon.ico">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="https://getmetbenefits.com/assets/plugins/font-awesome/css/font-awesome.min.css">
+
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" href="https://getmetbenefits.com/assets/plugins/bootstrap/css/bootstrap.min.css">
+
+    <!-- CSS Customization -->
+    <link rel="stylesheet" href="css/global.css">
+
+    <!-- XMPie CSS library -->
+    <link href="deps/xmp/css/xmp.css" rel="stylesheet" media="screen">
+
+    <!-- XMPie XMPL library -->
+    <script src="deps/jquery/jquery-1.10.2.min.js"></script>
+    <script src="deps/xmp/js/xmp.min.js"></script>
+    <script src="xmpcfg.js"></script>
+</head>
+
+<body ng-controller="GlobalController">
+<div ng-controller="XMPAnonymousPage" xmp-cloak>
+
+    <div class="global-header" ng-include="'templates/global/header.html'"></div>
+    <div class="subnav hidden-xs" ng-include="'templates/marketing/navbar_desktop.html'"></div>
+    <div class="subnav-min hidden-sm hidden-md hidden-lg" ng-include="'templates/marketing/navbar_mobile.html'"></div>
+
+    <div>
+        <div class="container page-title product-title">
+            <h1><strong><span class="variable-value">{{product_vars.ci_vars.name}}</span></strong></h1>
+        </div>
+    </div>
+
+    <div class="container product-card-tile">
+        <div class="product-card">
+            <div id="product-image-critical" class="product-card-image"></div>
+            <div class="product-card-copy">
+                <p>Those who have been struck by a serious illness often find that their medical and disability plans fall short financially, leaving them accountable for significant out-of-pocket expenses.</p>
+                <p><strong>MetLife <span class="variable-value">{{product_vars.ci_vars.name}}</span></strong> complements your existing health care plan by <strong>providing a lump-sum payment</strong> if you or a loved one is diagnosed with a covered condition, such as cancer<sup>1</sup>, heart attack or stroke.<sup>2</sup> And, you get to decide how to spend the money.</p>
+                <p><span class="variable-value">Plus, your plan includes something called the Health Screening Benefit.* You'll get an annual benefit of $[##] just for taking one of the eligible screening/preventive measures like a mammogram or annual physical exam.</span></p>
+                <p class="enroll-now">
+                    <a href="register.html" target="_blank" class="btn-brand-1st table" role="button" onClick="ga('send', 'event', 'Enroll Now', 'Click', 'Enroll_Now_Critical');">Get Coverage &ndash; Enroll Now</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-white">
+        <div class="container">
+
+            <div class="collapse-group">
+                <div class="collapse-btn" data-target="collapse-1">
+                    <div class="btn-copy"><span class="variable-value">{{general_vars.group}}</span> Rates</div>
+                    <div class="btn-icon"></div>
+                </div>
+                <div class="collapse" id="collapse-1">
+                    <!-- critical 4-tier -->
+                    <div class="card card-block">
+                        <p>Enter your information below to see how much <span class="variable-value">{{product_vars.ci_vars.name}}</span> costs. With competitive employee rates, you can get coverage for monthly rates around the national average cost of a tankful of unleaded gas for a SUV.</p>
+                        <p>Option:</p>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4">
+                                <div class="form-group product-form-group">
+                                    <div class="product-input-wrapper">
+                                        <select class="form-control" id="option" name="option" ng-model="calc_vars.option" ng-change="resetRate()">
+                                            <option value="">Please select your option</option>
+                                            <option value="15">$15,000</option>
+                                            <option value="30">$30,000</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p>Level of coverage:</p>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4">
+                                <div class="form-group product-form-group">
+                                    <div class="product-input-wrapper">
+                                        <select class="form-control" id="coverage" name="coverage" ng-model="calc_vars.coverage" ng-change="resetRate()">
+                                            <option value="">Please select your coverage</option>
+                                            <option value="EE">Employee Only</option>
+                                            <option value="EE+SP">Employee + <span class="variable-value">{{general_vars.sp_dp_mp}}</span></option>
+                                            <option value="EE+CH">Employee + Child(ren)</option>
+                                            <option value="FAM">Employee + <span class="variable-value">{{general_vars.sp_dp_mp}}</span> + Child(ren)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4">
+                                <a id="calc-submit" class="btn-brand-1st table" role="button" ng-click="calcSubmit(); ga('send', 'event', 'Calculator', 'Click', 'Calculator_Accident');">See Your Quote</a>
+                            </div>
+                        </div>
+                        <div class="rate-calc" style="margin-bottom: 20px;"></div>
+                    </div>
+                    <!-- critical 3-tier -->
+                    <!--<div class="card card-block">
+                        <p>Enter your information below to see how much <span class="variable-value">{{product_vars.ci_vars.name}}</span> costs. With competitive employee rates, you can get coverage for monthly rates around the national average cost of a tankful of unleaded gas for a SUV.</p>
+                        <p>Benefit Amount</p>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-5">
+                                <div class="form-group product-form-group">
+                                    <div class="product-input-wrapper">
+                                        <select class="form-control" id="member_amount" name="member_amount" ng-model="calc_vars.member.amount" ng-change="resetRate()">
+                                            <option value="">Please select your option</option>
+                                            <option value="10000">$10,000</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p>Age as of {{general_vars.as_of_date}}:</p>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-5">
+                                <div class="form-group product-form-group">
+                                    <div class="product-input-wrapper">
+                                        <select class="form-control" id="member_age" name="member_age" ng-model="calc_vars.member.age" ng-change="resetRate()">
+                                            <option value="">Please select your age</option>
+                                            <option ng-repeat="n in $parent.range(18,99,1)" value="{{n}}">{{n}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-check-grp">
+                            <label>
+                                <input type="checkbox" id="spouse_check" name="spouse_check" class="user-checkbox" ng-true-value="X" ng-false-value="" ng-model="calc_vars.spouse.check" ng-change="calc_vars.spouse.age = ''; resetRate()"/>
+                                <span></span>
+                                <span class="variable-value">{{general_vars.sp_dp_mp}}</span> ($<span class="variable-value">{{calc_vars.spouse.amount | number}}</span> benefit amount)
+                            </label>
+                        </div>
+                        <div ng-if="calc_vars.spouse.check === 'X'" class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-5">
+                                <div class="form-group product-form-group">
+                                    <div class="product-input-wrapper">
+                                        <select class="form-control" id="spouse_age" name="spouse_age" ng-model="calc_vars.spouse.age" ng-change="resetRate()">
+                                            <option value="">Please select your {{general_vars.sp_dp_mp}} age</option>
+                                            <option ng-repeat="n in $parent.range(18,99,1)" value="{{n}}">{{n}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-check-grp">
+                            <label>
+                                <input type="checkbox" id="child_check" name="child_check" class="user-checkbox" ng-true-value="X" ng-false-value="" ng-model="calc_vars.child.check" ng-change="resetRate()"/>
+                                <span></span>
+                                Children ($<span class="variable-value">{{calc_vars.child.amount | number}}</span> benefit amount)
+                            </label>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4">
+                                <a id="calc-submit" style="margin-top: 10px;" class="btn-brand-1st table" role="button" ng-click="calcSubmit(); ga('send', 'event', 'Calculator', 'Click', 'Calculator_Accident');">See Your Quote</a>
+                            </div>
+                        </div>
+                        <div class="rate-calc" style="margin-bottom: 20px;"></div>
+                    </div>-->
+                </div>
+            </div>
+
+            <div class="collapse-group">
+                <div class="collapse-btn" data-target="collapse-2">
+                    <div class="btn-copy">Learn More</div>
+                    <div class="btn-icon"></div>
+                </div>
+            </div>
+
+            <!-- Separating this from associated collapse-btn for stlying -->
+            <div class="collapse-group" style="border-bottom: 0">
+                <div class="collapse" id="collapse-2">
+                    <div class="card card-block" style="padding-left: 0; padding-right: 0; margin-bottom: 0;">
+
+                        <div class="collapse-group">
+                            <div class="collapse-btn nested-item" data-target="collapse-2a">
+                                <div class="btn-copy">The health care plan that I have through work is a good plan. Why do I need <span class="variable-value">{{product_vars.ci_vars.name}}</span>?</div>
+                                <div class="btn-icon"></div>
+                            </div>
+                            <div class="collapse" id="collapse-2a">
+                                <div class="card card-block">
+                                    <p>Even with a good health care plan in place, it might not cover all of the costs associated with a serious illness. The coverage shortfall would leave you responsible for the expenses not paid by your health insurance. In many cases, the costs of medical tests, surgeries, rehabilitation, and even lost income, can be significant. <span class="variable-value">{{product_vars.ci_vars.name}}</span> will provide you with a lump-sum payment that you can use towards daily living expenses like a mortgage and childcare services or out-of-pocket costs associated with your care.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="collapse-group">
+                            <div class="collapse-btn nested-item" data-target="collapse-2b">
+                                <div class="btn-copy">Can I enroll for this coverage without having to take a medical exam?</div>
+                                <div class="btn-icon"></div>
+                            </div>
+                            <div class="collapse" id="collapse-2b">
+                                <div class="card card-block">
+                                    <p>Yes. You don’t need to take any medical exams or answer any health questions. Both you and eligible family members can enroll, provided you are actively at work.<sup>3</sup></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="collapse-group">
+                            <div class="collapse-btn nested-item" data-target="collapse-2c">
+                                <div class="btn-copy">How do I pay for my coverage?</div>
+                                <div class="btn-icon"></div>
+                            </div>
+                            <div class="collapse" id="collapse-2c">
+                                <div class="card card-block">
+                                    <p>Premiums will be conveniently paid through payroll deduction.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="collapse-group">
+                            <div class="collapse-btn nested-item" data-target="collapse-2d">
+                                <div class="btn-copy">Who is eligible to enroll for this coverage?</div>
+                                <div class="btn-icon"></div>
+                            </div>
+                            <div class="collapse" id="collapse-2d">
+                                <div class="card card-block">
+                                    <p>You and your eligible family members can enroll.<sup>4</sup> You will need to be actively at work for your coverage to be effective.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="collapse-group">
+                            <div class="collapse-btn nested-item" data-target="collapse-2e">
+                                <div class="btn-copy">What happens if my employment status changes? Can I take my coverage with me?</div>
+                                <div class="btn-icon"></div>
+                            </div>
+                            <div class="collapse" id="collapse-2e">
+                                <div class="card card-block">
+                                    <p>Yes, this coverage is portable.<sup>5</sup> You can take it with you if your employment status changes. It will be important for you to continue to pay your premiums in order to keep your coverage in force. Your coverage will only end if you stop paying your premium or if your employer cancels the group policy or offers you similar coverage with a different insurance carrier.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <a href="pdf/CI_PlanSummary.pdf" target="_blank" class="collapse-btn" style="padding-top: 15px; padding-bottom: 15px" onClick="ga('send', 'event', 'PDF', 'Click', 'Plan_Summary_Critical');">Coverage Details</a>
+            <div class="card card-block">
+                <p>Need Help? Call <span ng-include="'templates/global/phone_link.html'"></span></p>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="disclaimer">
+        <div class="container">
+            <div class="disclaimer-wrapper">
+                <p><span class="variable-value">*The Health Screening Benefit is not available in all states.</span></p>
+                <p><sup>1</sup> Please review the Disclosure Statement or Outline of Coverage/Disclosure Document for specific information about cancer benefits. Not all types of cancer are covered. Some cancers are covered at less than the Initial Benefit Amount. For NH-sitused cases and NH residents, there is an initial benefit of $100 for All Other Cancer.</p>
+                <p><sup>2</sup> In certain states, the Covered Condition is Severe Stroke.</p>
+                <p><sup>3</sup> Coverage is guaranteed provided (1) the employee is actively at work and (2) dependents are not subject to medical restrictions as set forth on the enrollment form and in the Certificate. Some states require the insured to have medical coverage. Additional restrictions apply to dependents serving in the armed forces or living overseas.</p>
+                <p><sup>4</sup> Eligible Family Members means all persons eligible for coverage as defined in the Certificate.</p>
+                <p><sup>5</sup> Eligibility for portability through the Continuation of Insurance with Premium Payment provision may be subject to certain eligibility requirements and limitations. For more information, contact your MetLife representative.</p>
+                <p>METLIFE <span class="variable-value">{{product_vars.ci_vars.name | uppercase}}</span> (CII) IS A LIMITED BENEFIT GROUP INSURANCE POLICY. Like most group accident and health insurance policies, MetLife's CII policies contain certain exclusions, limitations and terms for keeping them in force. Product features and availability may vary by state. In most plans, there is a pre-existing condition exclusion. After a covered condition occurs, there is a benefit suspension period during which most plans do not pay recurrence benefits, except in the case of insureds covered under a New York certificate. MetLife offers CII on both an Attained Age and an Issue Age basis. Attained Age rates are based on 5-year age bands and will increase when a Covered Person reaches a new age band. MetLife's Issue Age CII is guaranteed renewable, and may be subject to benefit reductions that begin at age 65. Premium rates for MetLife's Issue Age CII are based on age at the time of the initial coverage effective date and will not increase due to age; premium rates for increases in coverage, including the addition of dependents' coverage, if applicable, will be based on the covered person's age at the time of the initial coverage effective date. Rates are subject to change for MetLife's Issue Age CII on a class-wide basis. A more detailed description of the benefits, limitations, and exclusions applicable to both Attained Age and Issue Age CII can be found in the applicable Disclosure Statement or Outline of Coverage/Disclosure Document available at time of enrollment. For complete details of coverage and availability, please refer to the group policy form GPNP07-CI, GPNP09-CI or GPNP14-CI, or contact MetLife for more information. Benefits are underwritten by Metropolitan Life Insurance Company, New York, New York.</p>
+                <p>MetLife's <span class="variable-value">{{product_vars.ci_vars.name}}</span> is not intended to be a substitute for Medical Coverage providing benefits for medical treatment, including hospital, surgical and medical expenses. MetLife's <span class="variable-value">{{product_vars.ci_vars.name}}</span> does not provide reimbursement for such expenses.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="global-footer"  ng-include="'templates/marketing/marketing_footer.html'"></div>
+</div>
+
+<!-- JS Global Compulsory -->
+<script type="text/javascript" src="https://getmetbenefits.com/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- JS Page Level -->
+<script type="text/javascript" src="js/jquery.mask.min.js"></script>
+<script type="text/javascript" src="js/moment.min.js"></script>
+<script type="text/javascript" src="js/moment-timezone-with-data.min.js"></script>
+
+<!-- JS Customization -->
+<script src="js/global/global.js"></script>
+<script src="js/marketing/critical.js"></script>
+
+</body>
+</html>

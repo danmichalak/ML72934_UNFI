@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8" ng-app="xmp.app"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9" ng-app="xmp.app"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en" ng-app="xmp.app">
+<!--<![endif]-->
+
+<head>
+    <title>Metlife</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Icon -->
+    <link rel="apple-touch-icon" href="img/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="img/favicon.ico">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="https://getmetbenefits.com/assets/plugins/font-awesome/css/font-awesome.min.css">
+
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" href="https://getmetbenefits.com/assets/plugins/bootstrap/css/bootstrap.min.css">
+
+    <!-- CSS Customization -->
+    <link rel="stylesheet" href="css/global.css">
+
+    <!-- XMPie CSS library -->
+    <link href="deps/xmp/css/xmp.css" rel="stylesheet" media="screen">
+
+    <!-- XMPie XMPL library -->
+    <script src="deps/jquery/jquery-1.10.2.min.js"></script>
+    <script src="deps/xmp/js/xmp.min.js"></script>
+    <script src="xmpcfg.js"></script>
+</head>
+
+<body ng-controller="GlobalController">
+<div ng-controller="XMPPersonalizedPage" xmp-tracking-page-name="Dependent Information" xmp-cloak xmp-turn-off-default-error>
+
+    <div class="global-header" ng-include="'templates/enrollment/enrollment_header.html'"></div>
+
+    <div class="content-white">
+        <div class="container">
+
+            <div class="step" ng-include="'templates/enrollment/step.html'"></div>
+
+            <div class="step-info">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-10">
+                        <h3 class="header-text">Instructions</h3>
+                        <p>Please enter your dependent information.</p>
+                        <p>Please do not use your browser back button to navigate through the site as it will interfere with us receiving your enrollment properly. Please use the back button provided.</p>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-2">
+                        <div class="row pie-progress-charts custom-progress-chart">
+                            <div class="inner-pchart col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="circle" id="circle-3">
+                                    <div class="circles-wrp" style="position:relative; display:inline-block;">
+                                        <svg width="76" height="76">
+                                            <path fill="transparent" stroke="#d6d6d6" stroke-width="5" d="M 37.99276960126882 2.500000736319244 A 35.5 35.5 0 1 1 37.95069121219846 2.5000342444750316 Z"></path>
+                                            <path fill="transparent" stroke="#006ab6" stroke-width="5" d="M 37.99276960126882 2.500000736319244 A 35.5 35.5 0 0 1 58.908796112081085 66.68923570162549 "></path>
+                                        </svg>
+                                        <div class="circles-text-wrp" style="position:absolute; top:0; left:0; text-align:center; width:100%; font-size:19px; height:76px; line-height:76px;">
+                                            <span class="circles-number">
+                                                <span class="circles-number">40</span>
+                                            </span>
+                                            <span class="circles-text">%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <form id="dependent_info" name="dependent_info" xmp-update xmp-success-url="{{nextPage.fileName}}" xmp-failure-url="dependent-info.html">
+
+                <div class="enrollment-form-panel">
+                    <div class="enrollment-form-panel-body">
+
+                        <div class="enrollment-form-panel" ng-if="hasSp">
+                            <div class="enrollment-form-panel-header">
+                                <i class="fa fa-tasks"></i>
+                                <h3 class="enrollment-form-panel-title"><span class="variable-value">{{general_vars.sp_dp}}</span> Information</h3>
+                            </div>
+                            <div class="enrollment-form-panel-body">
+                                <div class="enrollment-form-panel-content">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-12 col-md-6">
+                                            <div class="form-group">
+                                                <label><span class="variable-value">{{general_vars.sp_dp}}</span> Name:</label>
+                                                <input class="form-control" type="text" id="sp_name" name="sp_name" xmp-write-ador="xmp.r['SP_NAME']" placeholder="{{general_vars.sp_dp}} Name" required/>
+                                                <div class="other-error" ng-if="dependent_info.sp_name.$error.required">Required</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-6">
+
+                                            <!-- critical 4-tier -->
+                                            <div class="form-group">
+                                                <label>Date of Birth (MM/DD/YYYY):</label>
+                                                <input class="form-control" type="text" id="sp_dob" name="sp_dob" xmp-write-ador="xmp.r['SP_DOB']" ng-change="dateStatus['sp_dob'] = getDateStatus('sp_dob', minDt, maxDt, 'MM/DD/YYYY'); setSpAge();" placeholder="Date of Birth (MM/DD/YYYY)" required/>
+                                                <div class="other-error" ng-show="dependent_info.sp_dob.$error.required">Required</div>
+                                                <div class="other-error" ng-show="!dependent_info.sp_dob.$error.required && dateStatus['sp_dob'] === 'invalid'">This must be a valid date (MM/DD/YYYY)</div>
+                                                <div class="other-error" ng-show="!dependent_info.sp_dob.$error.required && dateStatus['sp_dob'] === 'out of bounds'">This date must be between {{minDtSp.format('MM/DD/YYYY')}} and {{maxDtSp.format('MM/DD/YYYY')}}</div>
+
+                                                <div class="form-check-grp" ng-if="!dependent_info.sp_dob.$error.required && dateStatus['sp_dob'] === 'valid'">
+                                                    <label>
+                                                        <input type="checkbox" id="sp_dob_x" name="sp_dob_x" class="user-checkbox" ng-true-value="X" ng-false-value="" xmp-write-ador="xmp.r['SP_DOB_X']"/>
+                                                        <span></span>
+                                                        As of {{general_vars.as_of_date}}, I confirm my spouse's age is: {{spAsOfAge}}
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <!-- critical 3-tier -->
+                                            <!--<div class="form-group">
+                                                <label>Date of Birth (MM/DD/YYYY):</label>
+                                                <input class="form-control" type="text" id="sp_dob" name="sp_dob" xmp-write-ador="xmp.r['SP_DOB']" ng-change="dateStatus['sp_dob'] = getDateStatus('sp_dob', minDt, maxDt, 'MM/DD/YYYY'); setSpAge();" placeholder="Date of Birth (MM/DD/YYYY)" disabled/>
+                                            </div>-->
+
+                                            <div class="form-group">
+                                                <label>Gender:</label>
+                                                <div class="form-radio-grp form-inline-grp">
+                                                    <label>
+                                                        <input type="radio" id="sp_gender_m" name="sp_gender" class="user-radio" value="M" xmp-write-ador="xmp.r['SP_GENDER']" required/>
+                                                        <span></span>
+                                                        Male
+                                                    </label>
+                                                    <label>
+                                                        <input type="radio" id="sp_gender_f" name="sp_gender" class="user-radio" value="F" xmp-write-ador="xmp.r['SP_GENDER']" required/>
+                                                        <span></span>
+                                                        Female
+                                                    </label>
+                                                </div>
+                                                <div class="other-error" ng-show="dependent_info.sp_gender.$error.required">Required</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="enrollment-form-panel" ng-if="hasCh">
+                            <div class="enrollment-form-panel-header">
+                                <i class="fa fa-tasks"></i>
+                                <h3 class="enrollment-form-panel-title">Children Information</h3>
+                            </div>
+                            <div class="enrollment-form-panel-body">
+
+                                <div class="enrollment-form-panel-content">
+
+                                    <div ng-if="children.length < 5">
+                                        <a class="add-field" ng-click="children.push({name: '', dob: '', gender: ''});">
+                                            <i class="fa fa-plus"></i>
+                                            Add a child (up to 5)
+                                        </a>
+                                    </div>
+
+                                    <div class="enrollment-form-panel" ng-repeat="child in children" ng-style="!$first ? {'margin-top': '0px', 'border-top': '0'} : {}">
+
+                                        <ng-form name="ch_form">
+                                            <div class="enrollment-form-panel-header" ng-if="$first">
+                                                <i class="fa fa-tasks"></i>
+                                                <h3 class="enrollment-form-panel-title">Children</h3>
+                                            </div>
+                                            <div class="enrollment-form-panel-body">
+
+                                                <div class="enrollment-form-panel-subcontent">
+
+                                                    <div ng-if="!$first">
+                                                        <a class="cancel-added-field" ng-click="children.splice($index, 1); xmp.r['CH'+(children.length+1)+'_NAME'] = ''; xmp.r['CH'+(children.length+1)+'_DOB'] = ''; xmp.r['CH'+(children.length+1)+'_GENDER'] = ''; xmp.r['MISC01'] = '';">
+                                                            <i class="fa fa-times"></i>
+                                                            CANCEL
+                                                        </a>
+                                                        <br/><br/>
+                                                    </div>
+
+                                                    <div class="row">
+
+                                                        <div class="col-xs-12 col-sm-12 col-md-6">
+                                                            <label>Name of your Child:</label>
+                                                            <input type="text" id="ch{{$index + 1}}_name" name="ch_name" class="form-control" ng-model="child.name" placeholder="Name of your Child" required/>
+                                                            <div class="other-error" ng-if="ch_form.ch_name.$error.required">Required</div>
+                                                        </div>
+
+                                                        <div class="col-xs-12 col-sm-12 col-md-6">
+                                                            <label>Date of Birth (MM/DD/YYYY):</label>
+                                                            <input type="text" id="ch{{$index + 1}}_dob" name="ch_dob" class="form-control" ng-model="child.dob" required ng-change="dateStatus['ch{{$index + 1}}_dob'] = getDateStatus('ch{{$index + 1}}_dob', minDtCh, maxDtCh, 'MM/DD/YYYY')" placeholder="Date of Birth (MM/DD/YYYY)"/>
+                                                            <div class="other-error" ng-show="ch_form.ch_dob.$error.required">Required</div>
+                                                            <div class="other-error" ng-show="!ch_form.ch_dob.$error.required && dateStatus['ch{{$index + 1}}_dob'] === 'invalid'">This must be a valid date (MM/DD/YYYY)</div>
+                                                            <div class="other-error" ng-show="!ch_form.ch_dob.$error.required && dateStatus['ch{{$index + 1}}_dob'] === 'out of bounds'">This date must be between {{minDtCh.format('MM/DD/YYYY')}} and {{maxDtCh.format('MM/DD/YYYY')}}</div>
+
+                                                            <br/>
+
+                                                            <label>Gender:</label>
+                                                            <div class="form-radio-grp form-inline-grp">
+                                                                <label>
+                                                                    <input type="radio" id="ch{{$index + 1}}_gender_m" name="ch{{$index + 1}}_gender" class="user-radio" value="M" xmp-write-ador="child.gender" required/>
+                                                                    <span></span>
+                                                                    Male
+                                                                </label>
+                                                                <label>
+                                                                    <input type="radio" id="ch{{$index + 1}}_gender_f" name="ch{{$index + 1}}_gender" class="user-radio" value="F" xmp-write-ador="child.gender" required/>
+                                                                    <span></span>
+                                                                    Female
+                                                                </label>
+                                                            </div>
+                                                            <div class="other-error" ng-if="child.gender === '' || child.gender === undefined">Required</div>
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </ng-form>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <input type="hidden" xmp-write-ador="xmp.r['AI_COV']"/>
+                        <input type="hidden" xmp-write-ador="xmp.r['CI_COV']"/>
+                        <input type="hidden" xmp-write-ador="xmp.r['HI_COV']"/>
+                        <input type="hidden" xmp-write-ador="xmp.r['SAVE_CONT']"/>
+                        <input type="hidden" xmp-write-ador="xmp.r['DEP_STAMP']"/>
+                        <input type="hidden" xmp-write-ador="xmp.r['DEP_PAGE']"/>
+
+                        <input type="hidden" xmp-write-ador="xmp.r['CH1_NAME']"/>
+                        <input type="hidden" xmp-write-ador="xmp.r['CH1_DOB']"/>
+                        <input type="hidden" xmp-write-ador="xmp.r['CH1_GENDER']"/>
+                        <input type="hidden" xmp-write-ador="xmp.r['CH2_NAME']"/>
+                        <input type="hidden" xmp-write-ador="xmp.r['CH2_DOB']"/>
+                        <input type="hidden" xmp-write-ador="xmp.r['CH2_GENDER']"/>
+                        <input type="hidden" xmp-write-ador="xmp.r['CH3_NAME']"/>
+                        <input type="hidden" xmp-write-ador="xmp.r['CH3_DOB']"/>
+                        <input type="hidden" xmp-write-ador="xmp.r['CH3_GENDER']"/>
+                        <input type="hidden" xmp-write-ador="xmp.r['CH4_NAME']"/>
+                        <input type="hidden" xmp-write-ador="xmp.r['CH4_DOB']"/>
+                        <input type="hidden" xmp-write-ador="xmp.r['CH4_GENDER']"/>
+                        <input type="hidden" xmp-write-ador="xmp.r['CH5_NAME']"/>
+                        <input type="hidden" xmp-write-ador="xmp.r['CH5_DOB']"/>
+                        <input type="hidden" xmp-write-ador="xmp.r['CH5_GENDER']"/>
+
+                        <div class="submit-container">
+                            <p style="text-align: right;"><strong>The "continue" button will be enabled once all of the required fields have valid entries.</strong></p>
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <input type="button" class="btn btn-brand-4th" value="BACK" ng-click="goToPage(prevPage.fileName)"/>
+                                </div>
+                                <div class="col-xs-6" style="text-align: right;">
+                                    <input type="submit" id="btn-submit" class="btn btn-brand-2nd" value="CONTINUE" data-toggle="modal" ng-disabled="dependent_info.$invalid || dateStatus['sp_dob'] !== 'valid' || dateStatus['ch1_dob'] !== 'valid' || dateStatus['ch2_dob'] !== 'valid' || dateStatus['ch3_dob'] !== 'valid' || dateStatus['ch4_dob'] !== 'valid' || dateStatus['ch5_dob'] !== 'valid'" ng-click="xmp.r['DEP_STAMP'] = getTimestamp(); xmp.r['DEP_PAGE'] = 'X'; convertDataToXmp(); loadingModal();" />
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+    <div class="disclaimer">
+        <div class="container">
+            <div class="disclaimer-wrapper">
+                <p ng-show="hasSp">{{general_vars.sp_dp_dis}}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="enrollment-footer"  ng-include="'templates/enrollment/enrollment_footer.html'"></div>
+
+</div>
+
+<!-- JS Global Compulsory -->
+<script type="text/javascript" src="https://getmetbenefits.com/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- JS Page Level -->
+<script type="text/javascript" src="js/jquery.mask.min.js"></script>
+<script type="text/javascript" src="js/moment.min.js"></script>
+<script type="text/javascript" src="js/moment-timezone-with-data.min.js"></script>
+
+<!-- JS Customization -->
+<script src="js/global/global.js"></script>
+<script src="js/enrollment/dependent-info.js"></script>
+
+<!-- Input Masking -->
+<script>
+    $("#sp_dob, #ch1_dob, #ch2_dob, #ch3_dob, #ch4_dob, #ch5_dob").mask("00/00/0000");
+</script>
+
+</body>
+</html>

@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8" ng-app="xmp.app"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9" ng-app="xmp.app"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en" ng-app="xmp.app">
+<!--<![endif]-->
+
+<head>
+    <title>Metlife</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Icon -->
+    <link rel="apple-touch-icon" href="img/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="img/favicon.ico">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="https://getmetbenefits.com/assets/plugins/font-awesome/css/font-awesome.min.css">
+
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" href="https://getmetbenefits.com/assets/plugins/bootstrap/css/bootstrap.min.css">
+
+    <!-- CSS Customization -->
+    <link rel="stylesheet" href="css/global.css">
+
+    <!-- XMPie CSS library -->
+    <link href="deps/xmp/css/xmp.css" rel="stylesheet" media="screen">
+
+    <!-- XMPie XMPL library -->
+    <script src="deps/jquery/jquery-1.10.2.min.js"></script>
+    <script src="deps/xmp/js/xmp.min.js"></script>
+    <script src="xmpcfg.js"></script>
+</head>
+
+<body ng-controller="GlobalController">
+<div ng-controller="XMPPersonalizedPage" xmp-tracking-page-name="Product Selection" xmp-cloak xmp-turn-off-default-error>
+
+    <div class="global-header" ng-include="'templates/enrollment/enrollment_header.html'"></div>
+
+    <div class="content-white">
+        <div class="container">
+
+            <div class="step" ng-include="'templates/enrollment/step.html'"></div>
+
+            <div class="step-info">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-10">
+                        <h3 class="header-text">Instructions</h3>
+                        <p>Select the option and coverage you wish to enroll in.</p>
+                        <h3 class="header-text">Please Note</h3>
+                        <p>By selecting the product(s) below you confirm:</p>
+                        <ul>
+                            <li>I have read my enrollment materials and I request coverage for the benefits for which I am or may become eligible.</li>
+                            <li>I understand that contributions are required for the benefits I select below.</li>
+                        </ul>
+                        <p ng-if="xmp.r['SITUS'] === 'NM'"><strong>This type of plan is NOT considered "minimum essential coverage" under the Affordable Care Act and therefore does NOT satisfy the individual mandate that you have health insurance coverage. If you do not have other health insurance coverage, you may be subject to a federal tax penalty.</strong></p>
+                        <p ng-if="xmp.r['SITUS'] === 'CO'">The following additional disclosure is required by New Mexico law: <strong>This type of plan is NOT considered "minimum essential coverage" under the Affordable Care Act and therefore does NOT satisfy the individual mandate that you have health insurance coverage. If you do not have other health insurance coverage, you may be subject to a federal tax penalty.</strong></p>
+                        <p ng-if="xmp.r['SITUS'] !== 'CO' && xmp.r['SITUS'] !== 'NM'">The following disclosure is required by New Mexico law: <strong>This type of plan is NOT considered "minimum essential coverage" under the Affordable Care Act and therefore does NOT satisfy the individual mandate that you have health insurance coverage. If you do not have other health insurance coverage, you may be subject to a federal tax penalty.</strong></p>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-2">
+                        <div class="circle" id="circle-1">
+                            <div class="circles-wrp" style="position:relative; display:inline-block;">
+                                <svg width="76" height="76">
+                                    <path fill="transparent" stroke="#d6d6d6" stroke-width="5" d="M 37.99276960126882 2.500000736319244 A 35.5 35.5 0 1 1 37.95069121219846 2.5000342444750316 Z"></path>
+                                    <path fill="transparent" stroke="#006ab6" stroke-width="5" d="M 37.99276960126882 2.500000736319244 A 35.5 35.5 0 0 1 37.95726961153701 2.500025716714923 "></path>
+                                </svg>
+                                <div class="circles-text-wrp" style="position:absolute; top:0; left:0; text-align:center; width:100%; font-size:19px; height:76px; line-height:76px;">
+                                    <span class="circles-number">0</span>
+                                    <span class="circles-text">%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <form id="product_selection" name="product_selection" xmp-update xmp-success-url="{{nextPage.fileName}}" xmp-failure-url="product-selection.html">
+
+
+                <div class="enrollment-form-panel">
+                    <div class="enrollment-form-panel-body">
+
+                        <div class="enrollment-form-panel">
+                            <div class="enrollment-form-panel-header">
+                                <i class="fa fa-tasks"></i>
+                                <h3 class="enrollment-form-panel-title">Please complete the following to begin your online enrollment, and to protect your information.</h3>
+                            </div>
+                            <div class="enrollment-form-panel-body">
+                                <div class="enrollment-form-panel-content">
+                                    <div class="form-check-grp">
+                                        <label>
+                                            <input type="checkbox" id="prod_ai" name="prod_ai" class="user-checkbox" ng-true-value="X" ng-false-value="" xmp-write-ador="xmp.r['PROD_AI']" ng-change="prodAccidentUpdate()"/>
+                                            <span></span>
+                                            <span class="variable-value">{{product_vars.ai_vars.name}}</span>
+                                        </label>
+                                        <label>
+                                            <input type="checkbox" id="prod_ci" name="prod_ci" class="user-checkbox" ng-true-value="X" ng-false-value="" xmp-write-ador="xmp.r['PROD_CI']" ng-change="prodCriticalUpdate()"/>
+                                            <span></span>
+                                            <span class="variable-value">{{product_vars.ci_vars.name}}</span>
+                                        </label>
+                                        <label>
+                                            <input type="checkbox" id="prod_hi" name="prod_hi" class="user-checkbox" ng-true-value="X" ng-false-value="" xmp-write-ador="xmp.r['PROD_HI']" ng-change="prodHospitalUpdate()"/>
+                                            <span></span>
+                                            <span class="variable-value">{{product_vars.hi_vars.name}}</span>
+                                        </label>
+                                        <label>
+                                            <input type="checkbox" id="prod_lp" name="prod_lp" class="user-checkbox" ng-true-value="X" ng-false-value="" xmp-write-ador="xmp.r['PROD_LP']" ng-change="prodLegalUpdate()"/>
+                                            <span></span>
+                                            <span class="variable-value">{{product_vars.lp_vars.name}}</span>
+                                        </label>
+                                    </div>
+                                    <div class="other-error" ng-if="xmp.r['PROD_AI'] !== 'X' && xmp.r['PROD_HI'] !== 'X' && xmp.r['PROD_CI'] !== 'X' && xmp.r['PROD_LP'] !== 'X'">
+                                        <input type="hidden" name="select_product" ng-model="selectProduct" required/>
+                                        Please select at least one option.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="enrollment-form-panel" ng-if="xmp.r['PROD_AI'] === 'X'">
+                            <div class="enrollment-form-panel-body">
+                                <div class="row">
+                                    <div class="col-xs-6"><span class="variable-value">{{product_vars.ai_vars.name}}</span></div>
+                                    <div class="col-xs-6" style="text-align: right;">Monthly Premium: {{xmp.r['AI_RATE'] | currency}}</div>
+                                </div>
+
+                                <div class="enrollment-form-panel-content">
+
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-6">
+                                            <p>First select your option</p>
+
+                                            <div class="form-radio-grp">
+                                                <label>
+                                                    <input type="radio" id="ai_opt_1" name="ai_opt" class="user-radio" value="LOW" xmp-write-ador="xmp.r['AI_OPT']" ng-change="prodAccidentUpdate()" required/>
+                                                    <span></span>
+                                                    Low Plan
+                                                </label>
+                                                <label>
+                                                    <input type="radio" id="ai_opt_2" name="ai_opt" class="user-radio" value="HIGH" xmp-write-ador="xmp.r['AI_OPT']" ng-change="prodAccidentUpdate()" required/>
+                                                    <span></span>
+                                                    High Plan
+                                                </label>
+                                            </div>
+
+                                            <div class="other-error" ng-show="product_selection.ai_opt.$error.required">Required</div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6">
+                                            <p>Then select your level of coverage</p>
+
+                                            <div class="form-radio-grp">
+                                                <label>
+                                                    <input type="radio" id="ai_cov_1" name="ai_cov" class="user-radio" value="EE" xmp-write-ador="xmp.r['AI_COV']" ng-change="prodAccidentUpdate()" required/>
+                                                    <span></span>
+                                                    Employee Only
+                                                </label>
+                                                <label>
+                                                    <input type="radio" id="ai_cov_2" name="ai_cov" class="user-radio" value="EE+SP" xmp-write-ador="xmp.r['AI_COV']" ng-change="prodAccidentUpdate()" required/>
+                                                    <span></span>
+                                                    Employee + <span class="variable-value">{{general_vars.sp_dp}}</span>
+                                                </label>
+                                                <label>
+                                                    <input type="radio" id="ai_cov_3" name="ai_cov" class="user-radio" value="EE+CH" xmp-write-ador="xmp.r['AI_COV']" ng-change="prodAccidentUpdate()" required/>
+                                                    <span></span>
+                                                    Employee + Child(ren)
+                                                </label>
+                                                <label>
+                                                    <input type="radio" id="ai_cov_4" name="ai_cov" class="user-radio" value="FAM" xmp-write-ador="xmp.r['AI_COV']" ng-change="prodAccidentUpdate()" required/>
+                                                    <span></span>
+                                                    Employee + <span class="variable-value">{{general_vars.sp_dp}}</span> + Child(ren)
+                                                </label>
+                                            </div>
+
+                                            <div class="other-error" ng-show="product_selection.ai_cov.$error.required">Required</div>
+                                        </div>
+                                    </div>
+
+                                    <br/>
+
+                                    <p ng-if="xmp.r['SITUS'] === 'CO'"><strong>THIS IS A LIMITED BENEFIT HEALTH COVERAGE POLICY AND IS NOT A SUBSTITUTE FOR MAJOR MEDICAL COVERAGE. LACK OF MAJOR MEDICAL COVERAGE (OR OTHER MINIMUM ESSENTIAL COVERAGE) MAY RESULT IN AN ADDITIONAL PAYMENT WITH YOUR TAXES.</strong></p>
+                                    <p ng-if="xmp.r['SITUS'] === 'MN' || xmp.r['SITUS'] === 'VT'"><strong>If I am enrolling for {{product_vars.ai_vars.name}}: I declare that all individuals to be insured have medical coverage in force that provides benefits for medical treatment, including hospital, surgical and medical expenses.</strong></p>
+                                    <p ng-if="xmp.r['SITUS'] !== 'MN' && xmp.r['SITUS'] !== 'VT'"><strong>For Minnesota and Vermont State residents - If I am enrolling for {{product_vars.ai_vars.name}}:  I declare that all individuals to be insured have medical coverage in force that provides benefits for medical treatment, including hospital, surgical and medical expenses.</strong></p>
+
+                                    <p><strong>Outline of Coverage - <span class="variable-value">{{product_vars.ai_vars.name}}</span></strong></p>
+                                    <p><a href="pdf/AI_OOC.pdf" target="_blank">Please click here to read a copy of the Outline of Coverage for the <span class="variable-value">{{product_vars.ai_vars.name}}</span>.</a></p>
+
+                                    <p><strong>Medicare Disclosure and Cancer Insurance Shopper's Guide</strong></p>
+                                    <p><a href="pdf/mdcisg.pdf" target="_blank">Please click here to read a copy of the Medicare Disclosure and Cancer Insurance Shopper's Guide.</a></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="enrollment-form-panel" ng-if="xmp.r['PROD_CI'] === 'X'">
+                            <div class="enrollment-form-panel-body">
+                                <div class="row">
+                                    <div class="col-xs-6"><span class="variable-value">{{product_vars.ci_vars.name}}</span></div>
+                                    <div class="col-xs-6" style="text-align: right;">Monthly Premium: {{xmp.r['CI_RATE'] | currency}}</div>
+                                </div>
+
+                                <!-- critical 4-tier -->
+                                <div class="enrollment-form-panel-content">
+
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-6">
+                                            <p>First select your option</p>
+
+                                            <div class="form-radio-grp">
+                                                <label>
+                                                    <input type="radio" id="ci_opt_1" name="ci_opt" class="user-radio" value="15" xmp-write-ador="xmp.r['CI_OPT']" ng-change="prodCriticalUpdate()" required/>
+                                                    <span></span>
+                                                    $15,000
+                                                </label>
+                                                <label>
+                                                    <input type="radio" id="ci_opt_2" name="ci_opt" class="user-radio" value="30" xmp-write-ador="xmp.r['CI_OPT']" ng-change="prodCriticalUpdate()" required/>
+                                                    <span></span>
+                                                    $30,000
+                                                </label>
+                                            </div>
+
+                                            <div class="other-error" ng-show="product_selection.ai_opt.$error.required">Required</div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6">
+                                            <p>Then select your level of coverage</p>
+
+                                            <div class="form-radio-grp">
+                                                <label>
+                                                    <input type="radio" id="ci_cov_1" name="ci_cov" class="user-radio" value="EE" xmp-write-ador="xmp.r['CI_COV']" ng-change="prodCriticalUpdate()" required/>
+                                                    <span></span>
+                                                    Employee Only
+                                                </label>
+                                                <label>
+                                                    <input type="radio" id="ci_cov_2" name="ci_cov" class="user-radio" value="EE+SP" xmp-write-ador="xmp.r['CI_COV']" ng-change="prodCriticalUpdate()" required/>
+                                                    <span></span>
+                                                    Employee + <span class="variable-value">{{general_vars.sp_dp}}</span>
+                                                </label>
+                                                <label>
+                                                    <input type="radio" id="ci_cov_3" name="ci_cov" class="user-radio" value="EE+CH" xmp-write-ador="xmp.r['CI_COV']" ng-change="prodCriticalUpdate()" required/>
+                                                    <span></span>
+                                                    Employee + Child(ren)
+                                                </label>
+                                                <label>
+                                                    <input type="radio" id="ci_cov_4" name="ci_cov" class="user-radio" value="FAM" xmp-write-ador="xmp.r['CI_COV']" ng-change="prodCriticalUpdate()" required/>
+                                                    <span></span>
+                                                    Employee + <span class="variable-value">{{general_vars.sp_dp}}</span> + Child(ren)
+                                                </label>
+                                            </div>
+
+                                            <div class="other-error" ng-show="product_selection.ci_cov.$error.required">Required</div>
+                                        </div>
+                                    </div>
+
+                                    <br/>
+
+                                    <p ng-if="xmp.r['SITUS'] === 'CO'"><strong>THIS IS A LIMITED BENEFIT HEALTH COVERAGE POLICY AND IS NOT A SUBSTITUTE FOR MAJOR MEDICAL COVERAGE. LACK OF MAJOR MEDICAL COVERAGE (OR OTHER MINIMUM ESSENTIAL COVERAGE) MAY RESULT IN AN ADDITIONAL PAYMENT WITH YOUR TAXES.</strong></p>
+                                    <p ng-if="xmp.r['SITUS'] === 'CA'"><strong>If I am enrolling for <span class="variable-value">{{product_vars.ci_vars.name}}</span>: I declare that all individuals to be insured have comprehensive medical coverage in force that provides benefits for medical treatment, including hospital, surgical and medical expenses.</strong></p>
+
+                                    <p><strong>Outline of Coverage - <span class="variable-value">{{product_vars.ci_vars.name}}</span></strong></p>
+                                    <p><a href="pdf/CI_OOC.pdf" target="_blank">Please click here to read a copy of the Outline of Coverage for the <span class="variable-value">{{product_vars.ci_vars.name}}</span>.</a></p>
+
+                                    <p><strong>Medicare Disclosure and Cancer Insurance Shopper's Guide</strong></p>
+                                    <p><a href="pdf/mdcisg.pdf" target="_blank">Please click here to read a copy of the Medicare Disclosure and Cancer Insurance Shopper's Guide.</a></p>
+                                </div>
+                                <!-- critical 3-tier -->
+                                <!--<div class="enrollment-form-panel-content">
+
+                                    <div class="form-check-grp">
+                                        <label>
+                                            <input type="checkbox" id="ci_opt" name="ci_opt" class="user-checkbox" ng-true-value="X" ng-false-value="" xmp-write-ador="xmp.r['CI_OPT']"/>
+                                            <span></span>
+                                            <span class="variable-value">{{product_vars.ci_vars.name}}</span> for Employee
+                                        </label>
+                                    </div>
+
+                                    <div class="form-radio-grp">
+                                        <label>
+                                            <input type="radio" id="ci_cov" name="ci_cov" class="user-radio" value="10000" xmp-write-ador="xmp.r['CI_COV']" ng-change="prodCriticalUpdate()" required/>
+                                            <span></span>
+                                            $10,000
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check-grp">
+                                        <label>
+                                            <input type="checkbox" id="ci_opt1" name="ci_opt1" class="user-checkbox" ng-true-value="X" ng-false-value="" xmp-write-ador="xmp.r['CI_OPT1']" ng-change="prodCriticalUpdate();"/>
+                                            <span></span>
+                                            <span class="variable-value">{{product_vars.ci_vars.name}}</span> for <span class="variable-value">{{general_vars.sp_dp}}</span> ($10,000 benefit amount)
+                                        </label>
+                                    </div>
+
+                                    <div ng-if="xmp.r['CI_OPT1'] === 'X'" class="row">
+                                        <div class="col-xs-12 col-sm-6">
+                                            <input class="form-control" type="text" id="sp_dob" name="sp_dob" xmp-write-ador="xmp.r['SP_DOB']" ng-change="dateStatus['sp_dob'] = getDateStatus('sp_dob', minDt, maxDt, 'MM/DD/YYYY'); setSpAge(); prodCriticalUpdate();" placeholder="Date of Birth (MM/DD/YYYY)" required/>
+                                            <div class="other-error" ng-if="product_selection.sp_dob.$error.required">Required</div>
+                                            <div class="other-error" ng-if="!product_selection.sp_dob.$error.required && dateStatus['sp_dob'] === 'invalid'">
+                                                This must be a valid date (MM/DD/YYYY)
+                                                <input type="hidden" id="sp_dob_error1" name="sp_dob_error1" ng-model="spDobError1" required/>
+                                            </div>
+                                            <div class="other-error" ng-if="!product_selection.sp_dob.$error.required && dateStatus['sp_dob'] === 'out of bounds'">
+                                                This date must be between {{minDtSp.format('MM/DD/YYYY')}} and {{maxDtSp.format('MM/DD/YYYY')}}
+                                                <input type="hidden" id="sp_dob_error2" name="sp_dob_error2" ng-model="spDobError2" required/>
+                                            </div>
+
+                                            <div class="form-check-grp" ng-if="!product_selection.sp_dob.$error.required && dateStatus['sp_dob'] === 'valid'">
+                                                <label>
+                                                    <input type="checkbox" id="sp_dob_x" name="sp_dob_x" class="user-checkbox" ng-true-value="X" ng-false-value="" xmp-write-ador="xmp.r['SP_DOB_X']" ng-change="prodCriticalUpdate();"/>
+                                                    <span></span>
+                                                    As of {{general_vars.as_of_date}}, I confirm my spouse's age is: {{spAsOfAge}}
+                                                </label>
+                                            </div>
+                                            <div ng-if="!product_selection.sp_dob.$error.required && dateStatus['sp_dob'] === 'valid' && xmp.r['SP_DOB_X'] !== 'X'" class="other-error">
+                                                Required
+                                                <input type="hidden" id="age_error" name="age_error" ng-model="ageError" required/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-check-grp">
+                                        <label>
+                                            <input type="checkbox" id="ci_opt2" name="ci_opt2" class="user-checkbox" ng-true-value="X" ng-false-value="" xmp-write-ador="xmp.r['CI_OPT2']" ng-change="prodCriticalUpdate();"/>
+                                            <span></span>
+                                            <span class="variable-value">{{product_vars.ci_vars.name}}</span> for Dependent Child ($5,000 benefit amount)
+                                        </label>
+                                    </div>
+
+                                    <br/>
+
+                                    <p ng-if="xmp.r['SITUS'] === 'CO'"><strong>THIS IS A LIMITED BENEFIT HEALTH COVERAGE POLICY AND IS NOT A SUBSTITUTE FOR MAJOR MEDICAL COVERAGE. LACK OF MAJOR MEDICAL COVERAGE (OR OTHER MINIMUM ESSENTIAL COVERAGE) MAY RESULT IN AN ADDITIONAL PAYMENT WITH YOUR TAXES.</strong></p>
+                                    <p ng-if="xmp.r['SITUS'] === 'CA'"><strong>If I am enrolling for <span class="variable-value">{{product_vars.ci_vars.name}}</span>: I declare that all individuals to be insured have comprehensive medical coverage in force that provides benefits for medical treatment, including hospital, surgical and medical expenses.</strong></p>
+
+                                    <p><strong>Outline of Coverage - <span class="variable-value">{{product_vars.ci_vars.name}}</span></strong></p>
+                                    <p><a href="pdf/CI_OOC.pdf" target="_blank">Please click here to read a copy of the Outline of Coverage for the <span class="variable-value">{{product_vars.ci_vars.name}}</span>.</a></p>
+
+                                    <p><strong>Medicare Disclosure and Cancer Insurance Shopper's Guide</strong></p>
+                                    <p><a href="pdf/mdcisg.pdf" target="_blank">Please click here to read a copy of the Medicare Disclosure and Cancer Insurance Shopper's Guide.</a></p>
+                                </div>-->
+                            </div>
+                        </div>
+
+                        <div class="enrollment-form-panel" ng-if="xmp.r['PROD_HI'] === 'X'">
+                            <div class="enrollment-form-panel-body">
+                                <div class="row">
+                                    <div class="col-xs-6"><span class="variable-value">{{product_vars.hi_vars.name}}</span></div>
+                                    <div class="col-xs-6" style="text-align: right;">Monthly Premium: {{xmp.r['HI_RATE'] | currency}}</div>
+                                </div>
+
+                                <div class="enrollment-form-panel-content">
+
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-6">
+                                            <p>First select your option</p>
+
+                                            <div class="form-radio-grp">
+                                                <label>
+                                                    <input type="radio" id="hi_opt_1" name="hi_opt" class="user-radio" value="LOW" xmp-write-ador="xmp.r['HI_OPT']" ng-change="prodHospitalUpdate()" required/>
+                                                    <span></span>
+                                                    Low Plan
+                                                </label>
+                                                <label>
+                                                    <input type="radio" id="hi_opt_2" name="hi_opt" class="user-radio" value="HIGH" xmp-write-ador="xmp.r['HI_OPT']" ng-change="prodHospitalUpdate()" required/>
+                                                    <span></span>
+                                                    High Plan
+                                                </label>
+                                            </div>
+
+                                            <div class="other-error" ng-show="product_selection.hi_opt.$error.required">Required</div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6">
+                                            <p>Then select your level of coverage</p>
+
+                                            <div class="form-radio-grp">
+                                                <label>
+                                                    <input type="radio" id="hi_cov_1" name="hi_cov" class="user-radio" value="EE" xmp-write-ador="xmp.r['HI_COV']" ng-change="prodHospitalUpdate()" required/>
+                                                    <span></span>
+                                                    Employee Only
+                                                </label>
+                                                <label>
+                                                    <input type="radio" id="hi_cov_2" name="hi_cov" class="user-radio" value="EE+SP" xmp-write-ador="xmp.r['HI_COV']" ng-change="prodHospitalUpdate()" required/>
+                                                    <span></span>
+                                                    Employee + <span class="variable-value">{{general_vars.sp_dp}}</span>
+                                                </label>
+                                                <label>
+                                                    <input type="radio" id="hi_cov_3" name="hi_cov" class="user-radio" value="EE+CH" xmp-write-ador="xmp.r['HI_COV']" ng-change="prodHospitalUpdate()" required/>
+                                                    <span></span>
+                                                    Employee + Child(ren)
+                                                </label>
+                                                <label>
+                                                    <input type="radio" id="hi_cov_4" name="hi_cov" class="user-radio" value="FAM" xmp-write-ador="xmp.r['HI_COV']" ng-change="prodHospitalUpdate()" required/>
+                                                    <span></span>
+                                                    Employee + <span class="variable-value">{{general_vars.sp_dp}}</span> + Child(ren)
+                                                </label>
+                                            </div>
+
+                                            <div class="other-error" ng-show="product_selection.hi_cov.$error.required">Required</div>
+                                        </div>
+                                    </div>
+
+                                    <br/>
+
+                                    <p ng-if="xmp.r['SITUS'] === 'CO'"><strong>THIS IS A LIMITED BENEFIT HEALTH COVERAGE POLICY AND IS NOT A SUBSTITUTE FOR MAJOR MEDICAL COVERAGE. LACK OF MAJOR MEDICAL COVERAGE (OR OTHER MINIMUM ESSENTIAL COVERAGE) MAY RESULT IN AN ADDITIONAL PAYMENT WITH YOUR TAXES.</strong></p>
+                                    <p ng-if="xmp.r['SITUS'] === 'MN' || xmp.r['SITUS'] === 'VT'"><strong>If I am enrolling for {{product_vars.hi_vars.name}}: I declare that all individuals to be insured have medical coverage in force that provides benefits for medical treatment, including hospital, surgical and medical expenses.</strong></p>
+                                    <p ng-if="xmp.r['SITUS'] !== 'MN' && xmp.r['SITUS'] !== 'VT'"><strong>For Minnesota and Vermont State residents - If I am enrolling for {{product_vars.hi_vars.name}}:  I declare that all individuals to be insured have medical coverage in force that provides benefits for medical treatment, including hospital, surgical and medical expenses.</strong></p>
+
+                                    <p><strong>Outline of Coverage - <span class="variable-value">{{product_vars.hi_vars.name}}</span></strong></p>
+                                    <p><a href="pdf/HI_OOC.pdf" target="_blank">Please click here to read a copy of the Outline of Coverage for the <span class="variable-value">{{product_vars.hi_vars.name}}</span>.</a></p>
+
+                                    <p><strong>Medicare Disclosure and Cancer Insurance Shopper's Guide</strong></p>
+                                    <p><a href="pdf/mdcisg.pdf" target="_blank">Please click here to read a copy of the Medicare Disclosure and Cancer Insurance Shopper's Guide.</a></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="enrollment-form-panel" ng-if="xmp.r['PROD_LP'] === 'X'">
+                            <div class="enrollment-form-panel-body">
+                                <div class="row">
+                                    <div class="col-xs-6"><span class="variable-value">{{product_vars.lp_vars.name}}</span></div>
+                                    <div class="col-xs-6" style="text-align: right;">Monthly Premium: {{xmp.r["LP_RATE"] | currency}}</div>
+                                </div>
+
+                                <div class="enrollment-form-panel-content">
+
+                                    <div class="form-check-grp">
+                                        <label>
+                                            <input type="checkbox" id="legal_select" name="legal_select" class="user-checkbox" ng-true-value="X" ng-false-value="" xmp-write-ador="xmp.r['MISC10']" ng-change="prodLegalUpdate()"/>
+                                            <span></span>
+                                            Yes. Please enroll me for the upcoming Plan <span class="variable-value">[pay period/month]</span> <span class="variable-value">##/##/####</span> - <span class="variable-value">##/##/####</span> for <span class="variable-value">$#.##</span> per <span class="variable-value">[pay period/month]</span>.
+                                        </label>
+                                    </div>
+                                    <div class="other-error" ng-if="xmp.r['MISC10'] !== 'X'">
+                                        <input type="hidden" name="legal_select_error" ng-model="legalSelectError" required/>
+                                        Required
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="enrollment-form-panel">
+                            <div class="enrollment-form-panel-body">
+                                <div class="row">
+                                    <div class="col-xs-6">&nbsp;</div>
+                                    <div class="col-xs-6" style="text-align: right;"><strong>Monthly Total Premium: {{xmp.r["TOTAL_RATE"] | currency}}</strong></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <input type="hidden" xmp-write-ador="xmp.r['AI_RATE']"/>
+                <input type="hidden" xmp-write-ador="xmp.r['CI_RATE']"/>
+                <input type="hidden" xmp-write-ador="xmp.r['HI_RATE']"/>
+                <input type="hidden" xmp-write-ador="xmp.r['LP_RATE']"/>
+                <input type="hidden" xmp-write-ador="xmp.r['TOTAL_RATE']"/>
+
+                <input type="hidden" xmp-write-ador="xmp.r['HI_COV']"/>
+                <input type="hidden" xmp-write-ador="xmp.r['SAVE_CONT']"/>
+                <input type="hidden" xmp-write-ador="xmp.r['PS_STAMP']"/>
+                <input type="hidden" xmp-write-ador="xmp.r['PS_PAGE']"/>
+
+                <div class="submit-container">
+                    <p style="text-align: right;"><strong>The "continue" button will be enabled once all of the required fields have valid entries.</strong></p>
+                    <div class="row">
+                        <div class="col-xs-12" style="text-align: right;">
+                            <input type="submit" id="btn-submit" class="btn btn-brand-2nd" value="CONTINUE" data-toggle="modal" ng-disabled="product_selection.$invalid" ng-click="xmp.r['PS_STAMP'] = getTimestamp(); xmp.r['PS_PAGE'] = 'X'; loadingModal();" />
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+    <div class="disclaimer">
+        <div class="container">
+            <div class="disclaimer-wrapper">
+                <p ng-show="xmp.r['PROD_AI'] === 'X' || xmp.r['PROD_CI'] === 'X' || xmp.r['PROD_HI'] === 'X'">{{general_vars.sp_dp_dis}}</p>
+          </div>
+        </div>
+    </div>
+
+    <div class="enrollment-footer"  ng-include="'templates/enrollment/enrollment_footer.html'"></div>
+
+</div>
+
+<!-- JS Global Compulsory -->
+<script type="text/javascript" src="https://getmetbenefits.com/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- JS Page Level -->
+<script type="text/javascript" src="js/jquery.mask.min.js"></script>
+<script type="text/javascript" src="js/moment.min.js"></script>
+<script type="text/javascript" src="js/moment-timezone-with-data.min.js"></script>
+
+<!-- JS Customization -->
+<script src="js/global/global.js"></script>
+<script src="js/enrollment/product-selection.js"></script>
+
+
+<!-- Input Masking -->
+<script>
+    $("#sp_dob").mask("00/00/0000");
+</script>
+
+</body>
+</html>

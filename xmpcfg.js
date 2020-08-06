@@ -1,0 +1,1 @@
+var xmpcfg = {access: { accessToken: '63a53d4a-e9ee-4288-b528-227d5412a07f_1172acc3-d556-43a4-9869-9d9b26a969bf_7dd1dc63e62b46aeb2cc63dd9034ed2c', url: 'https://pdfdownloadurl.com/XMPieXMPL_REST_API', circleProjectID:'1172acc3-d556-43a4-9869-9d9b26a969bf', circleProjectName: 'ML_72934' }};

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8" ng-app="xmp.app"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9" ng-app="xmp.app"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en" ng-app="xmp.app">
+<!--<![endif]-->
+
+<head>
+    <title>Metlife</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Icon -->
+    <link rel="apple-touch-icon" href="img/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="img/favicon.ico">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="https://getmetbenefits.com/assets/plugins/font-awesome/css/font-awesome.min.css">
+
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" href="https://getmetbenefits.com/assets/plugins/bootstrap/css/bootstrap.min.css">
+
+    <!-- CSS Customization -->
+    <link rel="stylesheet" href="css/global.css">
+
+    <!-- XMPie CSS library -->
+    <link href="deps/xmp/css/xmp.css" rel="stylesheet" media="screen">
+
+    <!-- XMPie XMPL library -->
+    <script src="deps/jquery/jquery-1.10.2.min.js"></script>
+    <script src="deps/xmp/js/xmp.min.js"></script>
+    <script src="xmpcfg.js"></script>
+</head>
+
+<body ng-controller="GlobalController">
+<div ng-controller="XMPAnonymousPage" xmp-cloak>
+
+    <div class="global-header" ng-include="'templates/global/header.html'"></div>
+    <div class="subnav hidden-xs" ng-include="'templates/marketing/navbar_desktop.html'"></div>
+    <div class="subnav-min hidden-sm hidden-md hidden-lg" ng-include="'templates/marketing/navbar_mobile.html'"></div>
+
+    <div>
+        <div class="container page-title product-title">
+            <h1><strong><span class="variable-value">{{product_vars.ai_vars.name}}</span></strong></h1>
+        </div>
+    </div>
+
+    <div class="container product-card-tile">
+        <div class="product-card">
+            <div id="product-image-accident" class="product-card-image"></div>
+            <div class="product-card-copy">
+                <p>Accidents can happen anytime and anywhere. They can lead to trips to the emergency room and the doctor's office, which could amount to bills and expenses not covered by your medical and disability insurance. Help alleviate the added cost that may result from an accident with <strong>MetLife <span class="variable-value">{{product_vars.ai_vars.name}}</span>.</strong></p>
+                <p>If you have an accident, you will automatically <strong>receive a lump-sum payment</strong> that you can use to help cover any out-of-pocket expenses like...deductibles, copays, transportation to/from medical centers, childcare and more.</p>
+                <p><span class="variable-value">Plus, your plan includes something called the Health Screening Benefit.* You'll get an annual benefit of $[##] just for taking one of the eligible screening/preventive measures like a mammogram or annual physical exam.</span></p>
+                <p class="enroll-now">
+                    <a href="register.html" target="_blank" class="btn-brand-1st table" role="button" onClick="ga('send', 'event', 'Enroll Now', 'Click', 'Enroll_Now_Accident');">Get Coverage &ndash; Enroll Now</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-white">
+        <div class="container">
+
+            <div class="collapse-group">
+                <div class="collapse-btn" data-target="collapse-1">
+                    <div class="btn-copy"><span class="variable-value">{{general_vars.group}}</span> Rates</div>
+                    <div class="btn-icon"></div>
+                </div>
+                <div class="collapse" id="collapse-1">
+                    <div class="card card-block">
+                        <p>Enter your information below to see how much <span class="variable-value">{{product_vars.ai_vars.name}}</span> costs. With competitive employee rates, you can get coverage for monthly rates around the average cost of a gym membership at a national retail chain.</p>
+                        <p>Option:</p>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4">
+                                <div class="form-group product-form-group">
+                                    <div class="product-input-wrapper">
+                                        <select class="form-control" id="option" name="option" ng-model="calc_vars.option" ng-change="resetRate()">
+                                            <option value="">Please select your option</option>
+                                            <option value="LOW">Low Plan</option>
+                                            <option value="HIGH">High Plan</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p>Level of coverage:</p>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4">
+                                <div class="form-group product-form-group">
+                                    <div class="product-input-wrapper">
+                                        <select class="form-control" id="coverage" name="coverage" ng-model="calc_vars.coverage" ng-change="resetRate()">
+                                            <option value="">Please select your coverage</option>
+                                            <option value="EE">Employee Only</option>
+                                            <option value="EE+SP">Employee + <span class="variable-value">{{general_vars.sp_dp_mp}}</span></option>
+                                            <option value="EE+CH">Employee + Child(ren)</option>
+                                            <option value="FAM">Employee + <span class="variable-value">{{general_vars.sp_dp_mp}}</span> + Child(ren)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4">
+                                <a id="calc-submit" class="btn-brand-1st table" role="button" ng-click="calcSubmit(); ga('send', 'event', 'Calculator', 'Click', 'Calculator_Accident');">See Your Quote</a>
+                            </div>
+                        </div>
+                        <div class="rate-calc" style="margin-bottom: 20px;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collapse-group">
+                <div class="collapse-btn" data-target="collapse-2">
+                    <div class="btn-copy">Learn More</div>
+                    <div class="btn-icon"></div>
+                </div>
+            </div>
+
+            <!-- Separating this from associated collapse-btn for stlying -->
+            <div class="collapse-group" style="border-bottom: 0">
+                <div class="collapse" id="collapse-2">
+                    <div class="card card-block" style="padding-left: 0; padding-right: 0; margin-bottom: 0;">
+
+                        <div class="collapse-group">
+                            <div class="collapse-btn nested-item" data-target="collapse-2a">
+                                <div class="btn-copy">I have a good health care plan at work. Why do I need <span class="variable-value">{{product_vars.ai_vars.name}}</span>?</div>
+                                <div class="btn-icon"></div>
+                            </div>
+                            <div class="collapse" id="collapse-2a">
+                                <div class="card card-block">
+                                    <p>Even some of the best health care plans don't always cover all of your expenses. MetLife<span class="variable-value">{{product_vars.ai_vars.name}}</span> provides a lump sum payment that may help bridge the financial gap between what is covered and what is not. It can be used to help pay for emergency room visits, unexpected surgeries, deductibles, and even daily living expenses like a mortgage or a car payment if you have lost income due to your accident.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="collapse-group">
+                            <div class="collapse-btn nested-item" data-target="collapse-2b">
+                                <div class="btn-copy">Can I enroll for this coverage without having to take a medical exam?</div>
+                                <div class="btn-icon"></div>
+                            </div>
+                            <div class="collapse" id="collapse-2b">
+                                <div class="card card-block">
+                                    <p>Yes. You don't need to take any medical exams or answer any health questions. Both you and your eligible family members can enroll, provided you are actively at work.<sup>1</sup></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="collapse-group">
+                            <div class="collapse-btn nested-item" data-target="collapse-2c">
+                                <div class="btn-copy">How do I pay for my coverage?</div>
+                                <div class="btn-icon"></div>
+                            </div>
+                            <div class="collapse" id="collapse-2c">
+                                <div class="card card-block">
+                                    <p>Premiums will be conveniently paid through payroll deduction.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="collapse-group">
+                            <div class="collapse-btn nested-item" data-target="collapse-2d">
+                                <div class="btn-copy">Who is eligible to enroll for this coverage?</div>
+                                <div class="btn-icon"></div>
+                            </div>
+                            <div class="collapse" id="collapse-2d">
+                                <div class="card card-block">
+                                    <p>You and your eligible family members can enroll.<sup>2</sup> You will need to be actively at work for your coverage to be effective.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="collapse-group">
+                            <div class="collapse-btn nested-item" data-target="collapse-2e">
+                                <div class="btn-copy">What happens if my employment status changes? Can I take my coverage with me?</div>
+                                <div class="btn-icon"></div>
+                            </div>
+                            <div class="collapse" id="collapse-2e">
+                                <div class="card card-block">
+                                    <p>Yes, this coverage is portable.<sup>3</sup> You can take your MetLife <span class="variable-value">{{product_vars.ai_vars.name}}</span> with you if your employment status changes. It will be important for you to continue to pay your premiums in order to keep your coverage in force. Your coverage will only end if you stop paying your premium or if your employer cancels the group policy or offers you similar coverage with a different insurance carrier.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <a href="pdf/AI_PlanSummary.pdf" target="_blank" class="collapse-btn" style="padding-top: 15px; padding-bottom: 15px" onClick="ga('send', 'event', 'PDF', 'Click', 'Plan_Summary_Accident');">Coverage Details</a>
+            <div class="card card-block">
+                <p>Need Help? Call <span ng-include="'templates/global/phone_link.html'"></span></p>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="disclaimer">
+        <div class="container">
+            <div class="disclaimer-wrapper">
+                <p><span class="variable-value">*The Health Screening Benefit is not available in all states.</span></p>
+                <p><sup>1</sup> Coverage is guaranteed provided (1) the employee is actively at work and (2) dependents to be covered are not subject to medical restrictions as set forth on the enrollment form and in the Certificate. Some states require the insured to have medical coverage. Additional restrictions may apply to dependents serving in the armed forces or living overseas.</p>
+                <p><sup>2</sup> Eligible Family Members means all persons eligible for coverage as defined in the Certificate.</p>
+                <p><sup>3</sup> Eligibility for portability through the Continuation of Insurance with Premium Payment provision may be subject to certain eligibility requirements and limitations. For more information, contact your MetLife representative.</p>
+                <p>METLIFE'S <span class="variable-value">{{product_vars.ai_vars.name | uppercase}}</span> IS A LIMITED BENEFIT GROUP INSURANCE POLICY. The policy is not intended to be a substitute for medical coverage and certain states may require the insured to have medical coverage to enroll for the coverage. The policy or its provisions may vary or be unavailable in some states. There are benefit reductions that begin at age 65, if applicable. Like most group accident and health insurance policies, policies offered by MetLife may include waiting periods and contain certain exclusions, limitations and terms for keeping them in force. For complete details of coverage and availability, please refer to the group policy form GPNP12-AX or contact MetLife.</p>
+                <p>Benefits are underwritten by Metropolitan Life Insurance Company, New York, NY. Hospital does not include certain facilities such as nursing homes, convalescent care or extended care facilities. See MetLifeâ€™s Disclosure Statement or Outline of Coverage/Disclosure Document for full details.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="global-footer"  ng-include="'templates/marketing/marketing_footer.html'"></div>
+</div>
+
+<!-- JS Global Compulsory -->
+<script type="text/javascript" src="https://getmetbenefits.com/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- JS Page Level -->
+<script type="text/javascript" src="js/jquery.mask.min.js"></script>
+<script type="text/javascript" src="js/moment.min.js"></script>
+<script type="text/javascript" src="js/moment-timezone-with-data.min.js"></script>
+
+<!-- JS Customization -->
+<script src="js/global/global.js"></script>
+<script src="js/marketing/accident.js"></script>
+
+</body>
+</html>

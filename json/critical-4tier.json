@@ -1,0 +1,10 @@
+[
+  {"coverage": "EE", "option": "30", "rate": {"base": "46.31"}},
+  {"coverage": "EE+SP", "option": "30", "rate": {"base": "114.11"}},
+  {"coverage": "EE+CH", "option": "30", "rate": {"base": "83.81"}},
+  {"coverage": "FAM", "option": "30", "rate": {"base": "157.50"}},
+  {"coverage": "EE", "option": "15", "rate": {"base": "23.15"}},
+  {"coverage": "EE+SP", "option": "15", "rate": {"base": "57.71"}},
+  {"coverage": "EE+CH", "option": "15", "rate": {"base": "41.90"}},
+  {"coverage": "FAM", "option": "15", "rate": {"base": "79.25"}}
+]

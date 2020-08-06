@@ -1,0 +1,7 @@
+<div class="row step-row">
+    <div ng-repeat="page in pages" ng-class="page.styleClass" ng-click="goToPage(page.fileName)">
+        <i class="fa fa-lock step-lock"></i>
+        <div ng-class="'step-icon icon-' + page.imageClass"></div>
+        <p>{{page.displayName}}</p>
+    </div>
+</div>

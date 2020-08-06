@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8" ng-app="xmp.app"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9" ng-app="xmp.app"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en" ng-app="xmp.app">
+<!--<![endif]-->
+
+<head>
+    <title>Metlife</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Icon -->
+    <link rel="apple-touch-icon" href="img/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="img/favicon.ico">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="https://getmetbenefits.com/assets/plugins/font-awesome/css/font-awesome.min.css">
+
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" href="https://getmetbenefits.com/assets/plugins/bootstrap/css/bootstrap.min.css">
+
+    <!-- CSS Customization -->
+    <link rel="stylesheet" href="css/global.css">
+
+    <!-- XMPie CSS library -->
+    <link href="deps/xmp/css/xmp.css" rel="stylesheet" media="screen">
+
+    <!-- XMPie XMPL library -->
+    <script src="deps/jquery/jquery-1.10.2.min.js"></script>
+    <script src="deps/xmp/js/xmp.min.js"></script>
+    <script src="xmpcfg.js"></script>
+</head>
+
+<body ng-controller="GlobalController">
+<div ng-controller="XMPPersonalizedPage" xmp-tracking-page-name="Enrollment Summary" xmp-cloak xmp-turn-off-default-error>
+
+    <div class="global-header" ng-include="'templates/enrollment/enrollment_header.html'"></div>
+
+    <div class="content-white">
+        <div class="container">
+
+            <div class="step" ng-include="'templates/enrollment/step.html'"></div>
+
+            <div class="step-info">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-10">
+                        <h3 class="header-text">Instructions</h3>
+                        <p>Please confirm that the below information is accurate and click 'CONTINUE' button below. If not, please update before continuing with your enrollment.</p>
+                        <p>Please do not use your browser back button to navigate through the site as it will interfere with us receiving your enrollment properly. Please use the back button provided.</p>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-2">
+
+                        <div class="row pie-progress-charts custom-progress-chart">
+                            <div class="inner-pchart col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="circle" id="circle-4">
+                                    <div class="circles-wrp" style="position:relative; display:inline-block;">
+                                        <svg width="76" height="76">
+                                            <path fill="transparent" stroke="#d6d6d6" stroke-width="5" d="M 37.99276960126882 2.500000736319244 A 35.5 35.5 0 1 1 37.95069121219846 2.5000342444750316 Z"></path>
+                                            <path fill="transparent" stroke="#006ab6" stroke-width="5" d="M 37.99276960126882 2.500000736319244 A 35.5 35.5 0 1 1 17.16565532740299 66.74334848383933 "></path>
+                                        </svg>
+                                        <div class="circles-text-wrp" style="position:absolute; top:0; left:0; text-align:center; width:100%; font-size:19px; height:76px; line-height:76px;">
+                                            <span class="circles-number">
+                                                <span class="circles-number">60</span>
+                                            </span>
+                                            <span class="circles-text">%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <form id="summary" name="summary" xmp-update xmp-success-url="{{nextPage.fileName}}" xmp-failure-url="summary.html">
+                <div class="enrollment-form-panel">
+                    <div class="enrollment-form-panel-body">
+
+                        <div class="summary-block">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-6 summary-header">Enrollment Summary</div>
+                                <div class="col-xs-12 col-sm-12 col-md-6 summary-header summary-rate-header">Monthly Total Premium: {{xmp.r["TOTAL_RATE"] | currency}}</div>
+                            </div>
+                        </div>
+
+                        <div class="summary-block">
+                            <div class="summary-edit-row">
+                                <input type="button" class="btn btn-brand-6th" value="EDIT" ng-click="goToPage('product-selection.html')"/>
+                            </div>
+
+                            <div class="summary-product-row" ng-if="xmp.r['PROD_AI']">
+                                <p><u><strong><span class="variable-value">{{product_vars.ai_vars.name}}</span></strong></u></p>
+                                <p><strong>Selected Option:</strong>
+                                    <span ng-if="xmp.r['AI_OPT'] === 'LOW'">Low Plan</span>
+                                    <span ng-if="xmp.r['AI_OPT'] === 'HIGH'">High Plan</span>
+                                </p>
+                                <p><strong>Selected Coverage:</strong>
+                                    <span ng-if="xmp.r['AI_COV'] === 'EE'">Employee Only</span>
+                                    <span ng-if="xmp.r['AI_COV'] === 'EE+SP'">Employee + <span class="variable-value">{{general_vars.sp_dp}}</span></span>
+                                    <span ng-if="xmp.r['AI_COV'] === 'EE+CH'">Employee + Child(ren)</span>
+                                    <span ng-if="xmp.r['AI_COV'] === 'FAM'">Employee + <span class="variable-value">{{general_vars.sp_dp}}</span> + Child(ren)</span>
+                                </p>
+                                <p><strong>Selected Monthly Premium:</strong>
+                                    {{xmp.r['AI_RATE'] | currency}}
+                                </p>
+                            </div>
+
+                            <!-- critical 4-tier -->
+                            <div class="summary-product-row" ng-if="xmp.r['PROD_CI']">
+                                <p><u><strong><span class="variable-value">{{product_vars.ci_vars.name}}</span></strong></u></p>
+                                <p><strong>Selected Option:</strong>
+                                    <span ng-if="xmp.r['CI_OPT'] === '15'">$15,000</span>
+                                    <span ng-if="xmp.r['CI_OPT'] === '30'">$30,000</span>
+                                </p>
+                                <p><strong>Selected Coverage:</strong>
+                                    <span ng-if="xmp.r['CI_COV'] === 'EE'">Employee Only</span>
+                                    <span ng-if="xmp.r['CI_COV'] === 'EE+SP'">Employee + <span class="variable-value">{{general_vars.sp_dp}}</span></span>
+                                    <span ng-if="xmp.r['CI_COV'] === 'EE+CH'">Employee + Child(ren)</span>
+                                    <span ng-if="xmp.r['CI_COV'] === 'FAM'">Employee + <span class="variable-value">{{general_vars.sp_dp}}</span> + Child(ren)</span>
+                                </p>
+                                <p><strong>Selected Monthly Premium:</strong>
+                                    {{xmp.r['CI_RATE'] | currency}}
+                                </p>
+                            </div>
+
+                            <!-- critical 3-tier -->
+                            <!--<div class="summary-product-row" ng-if="xmp.r['PROD_CI']">
+                                <p><u><strong><span class="variable-value">{{product_vars.ci_vars.name}}</span></strong></u></p>
+                                <p><strong>Critical Illness Insurance for Employee:</strong> $10,000</p>
+                                <p ng-if="xmp.r['CI_OPT1'] === 'X'"><strong>Critical Illness Insurance for <span class="variable-value">{{general_vars.sp_dp}}</span>:</strong> $10,000</p>
+                                <p ng-if="xmp.r['CI_OPT2'] === 'X'"><strong>Critical Illness Insurance for Dependent Child:</strong> $5,000</p>
+                                <p><strong>Selected Monthly Premium:</strong>
+                                    {{xmp.r['CI_RATE'] | currency}}
+                                </p>
+                            </div>-->
+
+                            <div class="summary-product-row" ng-if="xmp.r['PROD_HI']">
+                                <p><u><strong><span class="variable-value">{{product_vars.hi_vars.name}}</span></strong></u></p>
+                                <p><strong>Selected Option:</strong>
+                                    <span ng-if="xmp.r['HI_OPT'] === 'LOW'">Low Plan</span>
+                                    <span ng-if="xmp.r['HI_OPT'] === 'HIGH'">High Plan</span>
+                                </p>
+                                <p><strong>Selected Coverage:</strong>
+                                    <span ng-if="xmp.r['HI_COV'] === 'EE'">Employee Only</span>
+                                    <span ng-if="xmp.r['HI_COV'] === 'EE+SP'">Employee + <span class="variable-value">{{general_vars.sp_dp}}</span></span>
+                                    <span ng-if="xmp.r['HI_COV'] === 'EE+CH'">Employee + Child(ren)</span>
+                                    <span ng-if="xmp.r['HI_COV'] === 'FAM'">Employee + <span class="variable-value">{{general_vars.sp_dp}}</span> + Child(ren)</span>
+                                </p>
+                                <p><strong>Selected Monthly Premium:</strong>
+                                    {{xmp.r['HI_RATE'] | currency}}
+                                </p>
+                            </div>
+
+                            <div class="summary-product-row" ng-if="xmp.r['PROD_LP']">
+                                <p><u><strong><span class="variable-value">{{product_vars.lp_vars.name}}</span></strong></u></p>
+                                <p><strong>Selected Monthly Premium:</strong>
+                                    {{xmp.r['LP_RATE'] | currency}}
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <div class="summary-block">
+                            <div class="summary-edit-row">
+                                <input type="button" class="btn btn-brand-6th" value="EDIT" ng-click="goToPage('enrollee-info.html')"/>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-6">
+                                    <p><strong>First Name:</strong> {{xmp.r['FNAME']}}</p>
+                                    <p><strong>Last Name:</strong> {{xmp.r['LNAME']}}</p>
+                                    <p><strong>Phone:</strong> {{xmp.r['PHONE']}}</p>
+                                    <p><strong>Gender:</strong> {{xmp.r['GENDER']}}</p>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-6">
+                                    <p><strong>Address:</strong> {{xmp.r['ADDRESS']}}</p>
+                                    <p><strong>City, State, Zip Code:</strong> {{xmp.r['CITY']}}, {{xmp.r['STATE']}}, {{xmp.r['ZIP']}}</p>
+                                    <p><strong>Email:</strong> {{xmp.r['EMAIL']}}</p>
+                                    <p><strong>Date of Birth:</strong> {{xmp.r['DOB']}}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="summary-block" ng-if="hasSp || hasCh">
+                            <div class="summary-edit-row">
+                                <input type="button" class="btn btn-brand-6th" value="EDIT" ng-click="goToPage('dependent-info.html')"/>
+                            </div>
+
+                            <div class="enrollment-form-panel">
+                                <div class="enrollment-form-panel-header">
+                                    <i class="fa fa-tasks"></i>
+                                    <h3 class="enrollment-form-panel-title">Dependent(s):</h3>
+                                </div>
+                                <table class="summary-dependents-table">
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Date of Birth</th>
+                                        <th>Gender</th>
+                                        <th>Relationship</th>
+                                    </tr>
+                                    <tr ng-if="hasSp">
+                                        <td>{{xmp.r["SP_NAME"]}}</td>
+                                        <td>{{xmp.r["SP_DOB"]}}</td>
+                                        <td>{{xmp.r["SP_GENDER"]}}</td>
+                                        <td><span class="variable-value">{{general_vars.sp_dp}}</span></td>
+                                    </tr>
+                                    <tr ng-if="hasCh" ng-repeat="child in children">
+                                        <td>{{child.name}}</td>
+                                        <td>{{child.dob}}</td>
+                                        <td>{{child.gender}}</td>
+                                        <td>Child</td>
+                                    </tr>
+                                </table>
+
+                            </div>
+                        </div>
+
+                        <input type="hidden" xmp-write-ador="xmp.r['AI_COV']"/>
+                        <input type="hidden" xmp-write-ador="xmp.r['CI_COV']"/>
+                        <input type="hidden" xmp-write-ador="xmp.r['HI_COV']"/>
+                        <input type="hidden" xmp-write-ador="xmp.r['SAVE_CONT']"/>
+                        <input type="hidden" xmp-write-ador="xmp.r['SUM_STAMP']"/>
+                        <input type="hidden" xmp-write-ador="xmp.r['SUM_PAGE']"/>
+
+                        <div class="submit-container">
+                            <p style="text-align: right;"><strong>The "continue" button will be enabled once all of the required fields have valid entries.</strong></p>
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <input type="button" class="btn btn-brand-4th" value="BACK" ng-click="goToPage(prevPage.fileName)"/>
+                                </div>
+                                <div class="col-xs-6" style="text-align: right;">
+                                    <input type="submit" id="btn-submit" class="btn btn-brand-2nd" value="CONTINUE" data-toggle="modal" ng-disabled="enrollee_info.$invalid" ng-click="xmp.r['EE_STAMP'] = getTimestamp(); xmp.r['EE_PAGE'] = 'X'; loadingModal();"/>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+    <div class="disclaimer">
+        <div class="container">
+            <div class="disclaimer-wrapper">
+                <p ng-show="hasSp">{{general_vars.sp_dp_dis}}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="enrollment-footer"  ng-include="'templates/enrollment/enrollment_footer.html'"></div>
+
+</div>
+
+<!-- JS Global Compulsory -->
+<script type="text/javascript" src="https://getmetbenefits.com/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- JS Page Level -->
+<script type="text/javascript" src="js/jquery.mask.min.js"></script>
+<script type="text/javascript" src="js/moment.min.js"></script>
+<script type="text/javascript" src="js/moment-timezone-with-data.min.js"></script>
+
+<!-- JS Customization -->
+<script src="js/global/global.js"></script>
+<script src="js/enrollment/summary.js"></script>
+
+<!-- Input Masking -->
+<script>
+    $("#zip").mask("00000");
+    $("#phone").mask("000-000-0000");
+    $("#ssn").mask("000-00-0000");
+    $("#dob").mask("00/00/0000");
+</script>
+
+</body>
+</html>

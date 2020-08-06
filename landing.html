@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8" ng-app="xmp.app"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9" ng-app="xmp.app"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en" ng-app="xmp.app">
+<!--<![endif]-->
+
+<head>
+    <title>Metlife</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Icon -->
+    <link rel="apple-touch-icon" href="img/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="img/favicon.ico">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="https://getmetbenefits.com/assets/plugins/font-awesome/css/font-awesome.min.css">
+
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" href="https://getmetbenefits.com/assets/plugins/bootstrap/css/bootstrap.min.css">
+
+    <!-- CSS Customization -->
+    <link rel="stylesheet" href="css/global.css">
+
+    <!-- XMPie CSS library -->
+    <link href="deps/xmp/css/xmp.css" rel="stylesheet" media="screen">
+
+    <!-- XMPie XMPL library -->
+    <script src="deps/jquery/jquery-1.10.2.min.js"></script>
+    <script src="deps/xmp/js/xmp.min.js"></script>
+    <script src="xmpcfg.js"></script>
+</head>
+
+<body ng-controller="GlobalController">
+<div ng-controller="XMPAnonymousPage" xmp-cloak>
+
+    <div class="global-header" ng-include="'templates/global/header.html'"></div>
+    <div class="subnav hidden-xs" ng-include="'templates/marketing/navbar_desktop.html'"></div>
+    <div class="subnav-min hidden-sm hidden-md hidden-lg" ng-include="'templates/marketing/navbar_mobile.html'"></div>
+
+    <div id="home-content-banner">
+        <div class="container">
+            <div id="home-banner-copy">
+                <h1 style="color: #ffffff; font-family: Georgia,Times,Times New Roman,serif; font-weight: bold;">Protect your financial future by enrolling in <span class="variable-value">{{getProductsStr(product_vars)}}</span> today!</h1>
+                <p style="color: #ffffff;">Did you know that your current insurance coverage may not be sufficient to help you with living expenses, copays or non-covered services associated with an injury or illness? These expenses can be significant. The good news is, as <span class="variable-value">{{general_vars.a_an}}</span> <span class="variable-value">{{general_vars.group}}</span> <span class="variable-value">{{general_vars.greeting}}</span>, you can elect benefits that help offset these expenses.</p>
+                <br/><br/>
+                <a href="register.html" class="btn-brand-4th table" target="_blank" role="button" style="margin: 0;">Enroll Now </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-white">
+        <div class="container">
+            <h4><strong>Or to learn more — click a MetLife product below.</strong></h4>
+            <p ng-repeat="product in getProductsArr(product_vars)"><a ng-href="{{product.page}}"><strong>{{product.name}}</strong></a></p>
+            <p>The benefits provided by <span class="variable-value">{{general_vars.group}}</span> are a great first step toward long term financial protection. You can enroll in one, two or three of these benefits, to get the coverage that best suits your needs.</p>
+            <p><span ng-include="'templates/global/phone_link.html'"></span></p>
+        </div>
+    </div>
+
+    <div class="disclaimer">
+        <div class="container">
+            <div class="disclaimer-wrapper">
+                <span class="variable-value"><p>METLIFE'S <span class="variable-value">{{product_vars.ai_vars.name | uppercase}}</span> IS A LIMITED BENEFIT GROUP INSURANCE POLICY. The policy is not intended to be a substitute for medical coverage and certain states may require the insured to have medical coverage to enroll for the coverage. The policy or its provisions may vary or be unavailable in some states. There are benefit reductions that begin at age 65, if applicable. Like most group accident and health insurance policies, policies offered by MetLife may include waiting periods and contain certain exclusions, limitations and terms for keeping them in force. For complete details of coverage and availability, please refer to the group policy form GPNP12-AX or contact MetLife.</p>
+                <p>Benefits are underwritten by Metropolitan Life Insurance Company, New York, NY. Hospital does not include certain facilities such as nursing homes, convalescent care or extended care facilities. See MetLife's Disclosure Statement or Outline of Coverage/Disclosure Document for full details.</p>
+                <p>METLIFE <span class="variable-value">{{product_vars.ci_vars.name | uppercase}}</span> (CII) IS A LIMITED BENEFIT GROUP INSURANCE POLICY. Like most group accident and health insurance policies, MetLife's CII policies contain certain exclusions, limitations and terms for keeping them in force. Product features and availability may vary by state. In most plans, there is a pre-existing condition exclusion. After a covered condition occurs, there is a benefit suspension period during which most plans do not pay recurrence benefits, except in the case of insureds covered under a New York certificate. MetLife offers CII on both an Attained Age and an Issue Age basis. Attained Age rates are based on 5-year age bands and will increase when a Covered Person reaches a new age band. MetLife's Issue Age CII is guaranteed renewable, and may be subject to benefit reductions that begin at age 65. Premium rates for MetLife's Issue Age CII are based on age at the time of the initial coverage effective date and will not increase due to age; premium rates for increases in coverage, including the addition of dependents' coverage, if applicable, will be based on the covered person's age at the time of the initial coverage effective date. Rates are subject to change for MetLife's Issue Age CII on a class-wide basis. A more detailed description of the benefits, limitations, and exclusions applicable to both Attained Age and Issue Age CII can be found in the applicable Disclosure Statement or Outline of Coverage/Disclosure Document available at time of enrollment. For complete details of coverage and availability, please refer to the group policy form GPNP07-CI, GPNP09-CI or GPNP14-CI, or contact MetLife for more information. Benefits are underwritten by Metropolitan Life Insurance Company, New York, New York.</p>
+                <p>MetLife's<span class="variable-value">{{product_vars.ci_vars.name}}</span> is not intended to be a substitute for Medical Coverage providing benefits for medical treatment, including hospital, surgical and medical expenses. MetLife's <span class="variable-value">{{product_vars.ci_vars.name}}</span> does not provide reimbursement for such expenses.</p>
+                <p>METLIFE'S <span class="variable-value">{{product_vars.hi_vars.name | uppercase}}</span> IS A LIMITED BENEFIT GROUP INSURANCE POLICY. The policy is not intended to be a substitute for medical coverage and certain states may require the insured to have medical coverage to enroll for the coverage. The policy or its provisions may vary or be unavailable in some states. There may be a preexisting condition limitation for hospital sickness benefits. There are benefit reductions that begin at age 65. Like most group accident and health insurance policies, policies offered by MetLife may contain certain exclusions, limitations and terms for keeping them in force. For complete details of coverage and availability, please refer to the group policy form GPNP12-AX, GPNP13-HI, or GPNP12-AX-PASG, or contact MetLife. Benefits are underwritten by Metropolitan Life Insurance Company, New York, New York. In certain states, availability of MetLife's Group <span class="variable-value">{{product_vars.hi_vars.name}}</span> is pending regulatory approval.</p>
+                <p>METLIFE'S ACCIDENT AND HOSPITAL INDEMNITY INSURANCE POLICIES ARE LIMITED BENEFIT GROUP INSURANCE POLICIES. The policies are not intended to be a substitute for medical coverage and certain states may require the insured to have medical coverage to enroll for the coverage. The policies or their provisions may vary or be unavailable in some states. Prior hospital confinement may be required to receive certain benefits. There may be a preexisting condition limitation for hospital sickness benefits, if applicable. MetLife's Accident and Hospital Indemnity Insurance may be subject to benefit reductions that begin at age 65. And, like most group accident and health insurance policies, policies offered by MetLife may contain certain exclusions, limitations and terms for keeping them in force. For complete details of coverage and availability, please refer to the group policy form GPNP12-AX, GPNP13-HI, GPNP16-HI or GPNP12-AX-PASG, or contact MetLife. Benefits are underwritten by Metropolitan Life Insurance Company, New York, New York. In certain states, availability of MetLife's Group <span class="variable-value">{{product_vars.hi_vars.name}}</span> is pending regulatory approval.</p>
+                <p>Hospital does not include certain facilities such as nursing homes, convalescent care or extended care facilities. See MetLife's Disclosure Statement or Outline of Coverage/Disclosure Document for full details.</p>
+                <p>Group <span class="variable-value">{{product_vars.lp_vars.name | lowercase}}</span> provided by MetLife <span class="variable-value">{{product_vars.lp_vars.name}}</span>, Inc. Cleveland, Ohio. In certain states, group <span class="variable-value">{{product_vars.lp_vars.name | lowercase}}</span> are provided through insurance coverage underwritten by Metropolitan Property and Casualty Insurance Company and Affinities, Warwick, RI.</p>
+                <p>Some services not available in all states. No service, including consultations, will be provided for: 1) employment-related matters, including company or statutory benefits; 2) matters involving the employer, MetLife and affiliates and plan attorneys; 3) matters in which there is a conflict of interest between the employee or spouse or dependents in which case services are excluded for the spouse and dependents; 4) appeals and class actions; 5) farm and business matters, including rental issues when the participant is the landlord; 6) patent, trademark and copyright matters; 7) costs and fines; 8) frivolous or unethical matters; 9) matters for which an attorney-client relationship exists prior to the participant becoming eligible for plan benefits. For all other personal legal matters, an advice and consultation benefit is provided. Additional representation is also included for certain matters. Please see your plan description for details.</p>
+                <p>MetLife<sup>&reg;</sup> is a registered trademarks of Metropolitan Life Insurance Company, New York, NY.</p></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="global-footer"  ng-include="'templates/marketing/marketing_footer.html'"></div>
+</div>
+
+<!-- JS Global Compulsory -->
+<script type="text/javascript" src="https://getmetbenefits.com/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- JS Page Level -->
+<script type="text/javascript" src="js/jquery.mask.min.js"></script>
+<script type="text/javascript" src="js/moment.min.js"></script>
+<script type="text/javascript" src="js/moment-timezone-with-data.min.js"></script>
+
+<!-- JS Customization -->
+<script src="js/global/global.js"></script>
+<script src="js/marketing/landing.js"></script>
+
+</body>
+</html>

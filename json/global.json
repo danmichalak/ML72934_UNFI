@@ -1,0 +1,67 @@
+{
+  "general_vars": {
+    "group": "XYZ Company",
+    "grp_num": "123456789",
+    "grp_abbr": "XYZ",
+    "gpc": "XYZ",
+    "a_an": "a/an",
+    "greeting": "employee/associate",
+    "sp_dp": "Spouse/Domestic Partner*",
+    "sp_dp_mp": "Spouse/Domestic Partner",
+    "sp_dp_dis": "*Domestic Partner includes your registered Domestic Partner if you and your Domestic Partner are registered as domestic partners, civil union partners or reciprocal beneficiaries with a government agency or office where such registration is available. It also includes your non-registered Domestic Partner in whom you have an insurable interest. By enrolling such Domestic Partner for coverage and signing this enrollment form, you are attesting to your insurable interest.",
+    "as_of_date": "12/31/2020",
+    "situs": "US",
+    "pay_deduct_value": "N"
+  },
+  "product_vars": {
+    "ai_vars": {
+      "name": "Accident Insurance",
+      "page": "accident.html"
+    },
+    "ci_vars": {
+      "name": "Critical Illness Insurance",
+      "page": "critical.html"
+    },
+    "hi_vars": {
+      "name": "Hospital Indemnity Insurance",
+      "page": "hospital.html"
+    },
+    "lp_vars": {
+      "name": "Legal Plans",
+      "page": "legal.html"
+    }
+  },
+  "enrollment_pages": [
+    {
+      "trackingPageName": "Product Selection",
+      "displayName": "Product Selection",
+      "fileName": "product-selection.html",
+      "imageClass": "product"
+    }, {
+      "trackingPageName": "Enrollee Information",
+      "displayName": "Enrollee Information",
+      "fileName": "enrollee-info.html",
+      "imageClass": "employee"
+    }, {
+      "trackingPageName": "Dependent Information",
+      "displayName": "Dependent Information",
+      "fileName": "dependent-info.html",
+      "imageClass": "dependent"
+    }, {
+      "trackingPageName": "Enrollment Summary",
+      "displayName": "Enrollment Summary",
+      "fileName": "summary.html",
+      "imageClass": "enrollment"
+    }, {
+      "trackingPageName": "Signature",
+      "displayName": "Declarations/Signatures",
+      "fileName": "signature.html",
+      "imageClass": "signature"
+    }, {
+      "trackingPageName": "Thank You",
+      "displayName": "Thank You",
+      "fileName": "thankyou.html",
+      "imageClass": "thankyou"
+    }
+  ]
+}

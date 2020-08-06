@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8" ng-app="xmp.app"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9" ng-app="xmp.app"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en" ng-app="xmp.app">
+<!--<![endif]-->
+
+<head>
+    <title>Metlife</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Icon -->
+    <link rel="apple-touch-icon" href="img/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="img/favicon.ico">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="https://getmetbenefits.com/assets/plugins/font-awesome/css/font-awesome.min.css">
+
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" href="https://getmetbenefits.com/assets/plugins/bootstrap/css/bootstrap.min.css">
+
+    <!-- CSS Customization -->
+    <link rel="stylesheet" href="css/global.css">
+
+    <!-- XMPie CSS library -->
+    <link href="deps/xmp/css/xmp.css" rel="stylesheet" media="screen">
+
+    <!-- XMPie XMPL library -->
+    <script src="deps/jquery/jquery-1.10.2.min.js"></script>
+    <script src="deps/xmp/js/xmp.min.js"></script>
+    <script src="xmpcfg.js"></script>
+</head>
+
+<body ng-controller="GlobalController">
+<div ng-controller="XMPPersonalizedPage" xmp-cloak xmp-turn-off-default-error xmp-clear-all-cookies-onload>
+
+    <div class="global-header" ng-include="'templates/enrollment/enrollment_header.html'"></div>
+
+    <div class="content-gray">
+        <div class="container">
+
+            <form id="login" name="login" xmp-signin xmp-failure-js="onError()" xmp-success-url="redirect.html">
+
+                <div style="text-align: center;">
+                    <h4><strong>Please log in to complete your enrollment.</strong></h4>
+                </div>
+
+                <br/>
+
+                <div class="row">
+                    <div class="hidden-xs hidden-sm col-md-2"></div>
+                    <div class="col-xs-12 col-sm-12 col-md-3 login-form-col-label">
+                        <div class="form-group">
+                            <label>Last 4 Digits</label>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-5">
+                        <div class="form-group">
+                            <input id="userName" name="userName" class="form-control" type="text" placeholder="Last 4 digits" ng-model="userName" xmp-username/>
+                        </div>
+                    </div>
+                    <div class="hidden-xs hidden-sm col-md-2"></div>
+                </div>
+
+                <div class="row">
+                    <div class="hidden-xs hidden-sm col-md-2"></div>
+                    <div class="col-xs-12 col-sm-12 col-md-3 login-form-col-label">
+                        <div class="form-group">
+                            <label>Password</label>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-5">
+                        <div class="form-group">
+                            <input id="userPass" name="userPass" class="form-control" type="password" placeholder="Password" ng-model="userPass" xmp-password/>
+                        </div>
+                    </div>
+                    <div class="hidden-xs hidden-sm col-md-2"></div>
+                </div>
+
+                <div id="error-message" class="reg-error" style="text-align: center"></div>
+
+                <div class="submit-container row">
+                    <div class="hidden-xs hidden-sm col-md-5"></div>
+                    <div class="col-xs-12 col-sm-12 col-md-5">
+                        <input type="submit" class="btn btn-brand-2nd" style="width: auto;" value="LOGIN" ng-click="clearError()"/>
+                    </div>
+                    <div class="hidden-xs hidden-sm col-md-2"></div>
+                </div>
+
+                <br/>
+
+                <div style="text-align: center">Need help? Call <span ng-include="'templates/global/phone_link.html'"></span></div>
+
+            </form>
+
+        </div>
+    </div>
+
+    <div class="enrollment-footer"  ng-include="'templates/enrollment/enrollment_footer.html'"></div>
+</div>
+
+<!-- JS Global Compulsory -->
+<script type="text/javascript" src="https://getmetbenefits.com/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- JS Page Level -->
+<script type="text/javascript" src="js/jquery.mask.min.js"></script>
+<script type="text/javascript" src="js/moment.min.js"></script>
+<script type="text/javascript" src="js/moment-timezone-with-data.min.js"></script>
+<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+
+<!-- JS Customization -->
+<script src="js/global/global.js"></script>
+<script src="js/enrollment/login.js"></script>
+
+<!-- Input Masking and Error Handling -->
+<script>
+    $("#userName").mask("0000");
+
+    var onError = function() {
+        angular.element("[ng-controller='XMPPersonalizedPage']").scope().checkError(window.XMPLLastHttpError.data);
+    };
+</script>
+
+</body>
+</html>

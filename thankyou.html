@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8" ng-app="xmp.app"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9" ng-app="xmp.app"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en" ng-app="xmp.app">
+<!--<![endif]-->
+
+<head>
+    <title>Metlife</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Icon -->
+    <link rel="apple-touch-icon" href="img/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="img/favicon.ico">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="https://getmetbenefits.com/assets/plugins/font-awesome/css/font-awesome.min.css">
+
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" href="https://getmetbenefits.com/assets/plugins/bootstrap/css/bootstrap.min.css">
+
+    <!-- CSS Customization -->
+    <link rel="stylesheet" href="css/global.css">
+
+    <!-- XMPie CSS library -->
+    <link href="deps/xmp/css/xmp.css" rel="stylesheet" media="screen">
+
+    <!-- XMPie XMPL library -->
+    <script src="deps/jquery/jquery-1.10.2.min.js"></script>
+    <script src="deps/xmp/js/xmp.min.js"></script>
+    <script src="xmpcfg.js"></script>
+</head>
+
+<body ng-controller="GlobalController">
+<div ng-controller="XMPPersonalizedPage" xmp-tracking-page-name="Enrollee Information" xmp-cloak xmp-turn-off-default-error>
+
+    <div class="global-header" ng-include="'templates/enrollment/enrollment_header.html'"></div>
+    <div class="subnav" ng-include="'templates/marketing/navbar_blank.html'"></div>
+
+    <div>
+        <div class="container page-title product-title">
+            <h1><strong>Thank you for choosing MetLife</strong></h1>
+        </div>
+    </div>
+
+    <div class="container product-card-tile">
+        <div class="product-card">
+            <div id="product-image-thankyou" class="product-card-image"></div>
+            <div class="product-card-copy">
+                <h4 class="thankyou-header"><strong>You’ve selected the following coverage:</strong></h4>
+
+                <div class="thankyou-block" ng-if="xmp.r['PROD_AI'] === 'X'">
+                    <p><span class="variable-value">{{product_vars.ai_vars.name}}</span> Monthly Premium: {{xmp.r['AI_RATE'] | currency}}
+                        <br/>
+                        Option:
+                        <span ng-if="xmp.r['AI_OPT'] === 'LOW'">Low Plan</span>
+                        <span ng-if="xmp.r['AI_OPT'] === 'HIGH'">High Plan</span>
+                        <br/>
+                        Level:
+                        <span ng-if="xmp.r['AI_COV'] === 'EE'">Employee Only</span>
+                        <span ng-if="xmp.r['AI_COV'] === 'EE+SP'">Employee + <span class="variable-value">{{general_vars.sp_dp}}</span></span>
+                        <span ng-if="xmp.r['AI_COV'] === 'EE+CH'">Employee + Child(ren)</span>
+                        <span ng-if="xmp.r['AI_COV'] === 'FAM'">Employee + <span class="variable-value">{{general_vars.sp_dp}}</span> + Child(ren)</span>
+                    </p>
+                </div>
+
+                <!-- critical 4-tier -->
+                <div class="thankyou-block" ng-if="xmp.r['PROD_CI'] === 'X'">
+                    <p><span class="variable-value">{{product_vars.ci_vars.name}}</span> Monthly Premium: {{xmp.r['CI_RATE'] | currency}}
+                        <br/>
+                        Option:
+                        <span ng-if="xmp.r['CI_OPT'] === '15'">$15,000</span>
+                        <span ng-if="xmp.r['CI_OPT'] === '30'">$30,000</span>
+                        <br/>
+                        Level:
+                        <span ng-if="xmp.r['CI_COV'] === 'EE'">Employee Only</span>
+                        <span ng-if="xmp.r['CI_COV'] === 'EE+SP'">Employee + <span class="variable-value">{{general_vars.sp_dp}}</span></span>
+                        <span ng-if="xmp.r['CI_COV'] === 'EE+CH'">Employee + Child(ren)</span>
+                        <span ng-if="xmp.r['CI_COV'] === 'FAM'">Employee + <span class="variable-value">{{general_vars.sp_dp}}</span> + Child(ren)</span>
+                    </p>
+                </div>
+
+                <!-- critical 3-tier -->
+                <!--<div class="thankyou-block" ng-if="xmp.r['PROD_CI'] === 'X'">
+                    <p><span class="variable-value">{{product_vars.ci_vars.name}}</span> Monthly Premium: {{xmp.r['CI_RATE'] | currency}}
+                        <br/>
+                        Critical Illness Insurance for Employee ($10,000 benefit amount)
+                        <span ng-if="xmp.r['CI_OPT1'] === 'X'"><br/>Critical Illness Insurance for <span class="variable-value">{{general_vars.sp_dp}}</span> ($10,000 benefit amount)</span>
+                        <span ng-if="xmp.r['CI_OPT2'] === 'X'"><br/>Critical Illness Insurance for Dependent Child ($5,000 benefit amount)</span>
+                    </p>
+                </div>-->
+
+                <div class="thankyou-block" ng-if="xmp.r['PROD_HI'] === 'X'">
+                    <p><span class="variable-value">{{product_vars.hi_vars.name}}</span> Monthly Premium: {{xmp.r['HI_RATE'] | currency}}
+                        <br/>
+                        Option:
+                        <span ng-if="xmp.r['HI_OPT'] === 'LOW'">Low Plan</span>
+                        <span ng-if="xmp.r['HI_OPT'] === 'HIGH'">High Plan</span>
+                        <br/>
+                        Level:
+                        <span ng-if="xmp.r['HI_COV'] === 'EE'">Employee Only</span>
+                        <span ng-if="xmp.r['HI_COV'] === 'EE+SP'">Employee + <span class="variable-value">{{general_vars.sp_dp}}</span></span>
+                        <span ng-if="xmp.r['HI_COV'] === 'EE+CH'">Employee + Child(ren)</span>
+                        <span ng-if="xmp.r['HI_COV'] === 'FAM'">Employee + <span class="variable-value">{{general_vars.sp_dp}}</span> + Child(ren)</span>
+                    </p>
+                </div>
+
+                <div class="thankyou-block" ng-if="xmp.r['PROD_LP'] === 'X'">
+                    <p><span class="variable-value">{{product_vars.lp_vars.name}}</span> Monthly Premium: {{xmp.r['LP_RATE'] | currency}}</p>
+                </div>
+
+                <div class="thankyou-block">
+                    <p><strong>Total Monthly Premium: {{xmp.r['TOTAL_RATE'] | currency}}</strong></p>
+                </div>
+
+                <div class="thankyou-block">
+                    <p><strong>Click here for a confirmation of your enrollment for your records.</strong></p>
+                    <p>
+                        <a xmp-href="{{xmp.r['XMPie.PDF.P1']}}" target="_blank" class="btn btn-brand-2nd">SAVE NOW</a>
+                    </p>
+                </div>
+
+                <p>If you have any questions, please call us at <span ng-include="'templates/global/phone_link.html'"></span></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="disclaimer">
+        <div class="container">
+            <div class="disclaimer-wrapper">
+                <p ng-show="hasSp">{{general_vars.sp_dp_dis}}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="enrollment-footer"  ng-include="'templates/enrollment/enrollment_footer.html'"></div>
+
+</div>
+
+<!-- JS Global Compulsory -->
+<script type="text/javascript" src="https://getmetbenefits.com/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- JS Page Level -->
+<script type="text/javascript" src="js/jquery.mask.min.js"></script>
+<script type="text/javascript" src="js/moment.min.js"></script>
+<script type="text/javascript" src="js/moment-timezone-with-data.min.js"></script>
+
+<!-- JS Customization -->
+<script src="js/global/global.js"></script>
+<script src="js/enrollment/thankyou.js"></script>
+
+</body>
+</html>

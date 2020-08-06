@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8" ng-app="xmp.app"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9" ng-app="xmp.app"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en" ng-app="xmp.app">
+<!--<![endif]-->
+
+<head>
+    <title>Metlife</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Icon -->
+    <link rel="apple-touch-icon" href="img/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="img/favicon.ico">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="https://getmetbenefits.com/assets/plugins/font-awesome/css/font-awesome.min.css">
+
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" href="https://getmetbenefits.com/assets/plugins/bootstrap/css/bootstrap.min.css">
+
+    <!-- CSS Customization -->
+    <link rel="stylesheet" href="css/global.css">
+
+    <!-- XMPie CSS library -->
+    <link href="deps/xmp/css/xmp.css" rel="stylesheet" media="screen">
+
+    <!-- XMPie XMPL library -->
+    <script src="deps/jquery/jquery-1.10.2.min.js"></script>
+    <script src="deps/xmp/js/xmp.min.js"></script>
+    <script src="xmpcfg.js"></script>
+</head>
+
+<body ng-controller="GlobalController">
+<div ng-controller="XMPPersonalizedPage" xmp-tracking-page-name="Signature" xmp-cloak xmp-turn-off-default-error>
+
+    <div class="global-header" ng-include="'templates/enrollment/enrollment_header.html'"></div>
+
+    <div class="content-white">
+        <div class="container">
+
+            <div class="step" ng-include="'templates/enrollment/step.html'"></div>
+
+            <div class="step-info">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-10">
+                        <h3 class="header-text">Instructions</h3>
+                        <p>Please read the important information and type your name to complete enrollment.</p>
+                        <p>Please do not use your browser back button to navigate through the site as it will interfere with us receiving your enrollment properly. Please use the back button provided.</p>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-2">
+
+                        <div class="row pie-progress-charts custom-progress-chart">
+                            <div class="inner-pchart col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+                                <div class="inner-pchart col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <div class="circle" id="circle-5">
+                                        <div class="circles-wrp" style="position:relative; display:inline-block;">
+                                            <svg width="76" height="76">
+                                                <path fill="transparent" stroke="#d6d6d6" stroke-width="5" d="M 37.99276960126882 2.500000736319244 A 35.5 35.5 0 1 1 37.95069121219846 2.5000342444750316 Z"></path>
+                                                <path fill="transparent" stroke="#006ab6" stroke-width="5" d="M 37.99276960126882 2.500000736319244 A 35.5 35.5 0 1 1 4.229254588115829 27.05528646671351 "></path>
+                                            </svg>
+                                            <div class="circles-text-wrp" style="position:absolute; top:0; left:0; text-align:center; width:100%; font-size:19px; height:76px; line-height:76px;">
+                                                <span class="circles-number">
+                                                    <span class="circles-number">80</span>
+                                                </span>
+                                                <span class="circles-text">%</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <form id="signature" name="signature" xmp-update xmp-success-url="{{nextPage.fileName}}" xmp-failure-url="signature.html">
+
+                <div class="enrollment-form-panel">
+                    <div class="enrollment-form-panel-body">
+
+                        <div class="enrollment-form-panel">
+                            <div class="enrollment-form-panel-header">
+                                <i class="fa fa-tasks"></i>
+                                <h3 class="enrollment-form-panel-title">Please Read</h3>
+                            </div>
+                            <div class="enrollment-form-panel-body">
+
+                                <div class="enrollment-form-panel-subcontent">
+                                    <p>You are required to read the documents that the links below will direct you to. Please click on each link. A new tab will open. Once you have read the documents please return to this browser tab and check the appropriate boxes acknowledging that you have read the appropriate documents.</p>
+
+                                    <div class="signature-block" ng-if="xmp.r['PROD_AI'] === 'X'">
+
+                                        <h4 class="signature-header">Outline of Coverage - <span class="variable-value">{{product_vars.ai_vars.name}}</span></h4>
+                                        <p><strong>Please review the Outline of Coverage</strong></p>
+                                        <p><a href="pdf/AI_OOC.pdf" target="_blank" ng-click="accidentReady = true">Click here to read the Outline of Coverage</a></p>
+
+                                        <div class="form-check-grp" ng-if="accidentReady">
+                                            <label>
+                                                <input type="checkbox" class="user-checkbox" id="accident" name="accident" ng-true-value="X" ng-false-value="" ng-model="accidentValid" ng-change="checkForm('accident')"/>
+                                                <span></span>
+                                                By checking this box, I acknowledge and understand:
+                                            </label>
+                                            <ul>
+                                                <li ng-if="xmp.r['SITUS'] === 'MN'">I declare that all individuals to be insured for <span class="variable-value">{{product_vars.ai_vars.name}}</span> have medical coverage in force that provides benefits for medical treatment including hospital, surgical and medical expenses.</li>
+                                                <li ng-if="xmp.r['SITUS'] === 'NY'">For residents of LA, MT, ND, NM, OR, and UT: IF I AM SELECTING ACCIDENT INSURANCE, I UNDERSTAND THAT THIS IS ACCIDENT-ONLY INSURANCE.  IT DOES NOT PROVIDE COVERAGE FOR SICKNESS.  THIS IS A SUPPLEMENT TO HEALTH INSURANCE AND IS NOT A SUBSTITUTE FOR MAJOR MEDICAL COVERAGE.  LACK OF MAJOR MEDICAL COVERAGE (OR OTHER MINIMUM ESSENTIAL COVERAGE) MAY RESULT IN AN ADDITIONAL PAYMENT WITH YOUR TAXES.  I ACKNOWLEDGE THAT I HAVE COMPREHENSIVE HOSPITAL, SURGICAL AND MEDICAL HEALTH INSURANCE (MINIMUM ESSENTIAL COVERAGE).</li>
+                                                <li ng-if="xmp.r['SITUS'] === 'VT'">I declare that all individuals to be insured for <span class="variable-value">{{product_vars.ai_vars.name}}</span> have medical coverage in force that provides benefits for medical treatment including hospital, surgical and medical expenses.</li>
+                                                <li ng-if="xmp.r['SITUS'] === 'MD'">I declare that all individuals to be insured for <span class="variable-value">{{product_vars.ai_vars.name}}</span> have medical coverage in force that provides benefits for medical treatment including hospital, surgical and medical expenses.</li>
+                                                <li>I have received and read a copy of the Outline of Coverage or other disclosure document for the <span class="variable-value">{{product_vars.ai_vars.name}}</span>.</li>
+                                            </ul>
+                                            <div ng-hide="accidentValid" style="color: red;">In order to continue, you must acknowledge that you have read the Outline of Coverage by checking the box above.</div>
+                                        </div>
+                                        <div ng-hide="accidentReady" style="color: red;">You must read the Outline of Coverage and check the box that will appear upon reading.</div>
+                                        <div ng-if="!accidentReady || !accidentValid">
+                                            <input type="hidden" id="accident_error" name="accident_error" ng-model="accident_error" required/>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="signature-block" ng-if="xmp.r['PROD_CI'] === 'X'">
+
+                                        <h4 class="signature-header">Outline of Coverage - <span class="variable-value">{{product_vars.ci_vars.name}}</span></h4>
+                                        <p><strong>Please review the Outline of Coverage</strong></p>
+                                        <p><a href="pdf/CI_OOC.pdf" target="_blank" ng-click="criticalReady = true">Click here to read the Outline of Coverage</a></p>
+
+                                        <div class="form-check-grp" ng-if="criticalReady">
+                                            <label>
+                                                <input type="checkbox" class="user-checkbox" id="critical" name="critical" ng-true-value="X" ng-false-value="" ng-model="criticalValid" ng-change="checkForm('critical')"/>
+                                                <span></span>
+                                                By checking this box, I acknowledge and understand:
+                                            </label>
+                                            <ul>
+                                                <li ng-if="xmp.r['SITUS'] === 'NJ'">If applying for <span class="variable-value">{{product_vars.ci_vars.name}}</span>: The employee further declares that all persons to be insured have medical coverage in force that provides benefits for medical treatment, including hospital, surgical and medical expenses.</li>
+                                                <li ng-if="xmp.r['SITUS'] === 'VT'">I declare that all individuals to be insured for Limited Benefit Insurance have medical coverage in force that provides benefits for medical treatment including hospital, surgical and medical expenses.</li>
+                                                <li ng-if="xmp.r['SITUS'] === 'CA'">The employee further declares that all persons to be insured have comprehensive medical coverage in force that provides benefits for medical treatment, including hospital, surgical and medical expenses.</li>
+                                                <li>I have received and read a copy of the Outline of Coverage or other disclosure document for the <span class="variable-value">{{product_vars.ci_vars.name}}</span>.</li>
+                                                <li>In certain states, this coverage may be referred to as Critical Illness Insurance, Specified Disease Insurance, Limited Benefit Insurance or Limited Benefit Critical Illness Insurance.</li>
+                                            </ul>
+                                            <div ng-hide="criticalValid" style="color: red;">In order to continue, you must acknowledge that you have read the Outline of Coverage by checking the box above.</div>
+                                        </div>
+                                        <div ng-hide="criticalReady" style="color: red;">You must read the Outline of Coverage and check the box that will appear upon reading.</div>
+                                        <div ng-if="!criticalReady || !criticalValid">
+                                            <input type="hidden" id="critical_error" name="critical_error" ng-model="critical_error" required/>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="signature-block" ng-if="xmp.r['PROD_HI'] === 'X'">
+
+                                        <h4 class="signature-header">Outline of Coverage - <span class="variable-value">{{product_vars.hi_vars.name}}</span></h4>
+                                        <p><strong>Please review the Outline of Coverage</strong></p>
+                                        <p><a href="pdf/HI_OOC.pdf" target="_blank" ng-click="hospitalReady = true">Click here to read the Outline of Coverage</a></p>
+
+                                        <div class="form-check-grp" ng-if="hospitalReady">
+                                            <label>
+                                                <input type="checkbox" class="user-checkbox" id="hospital" name="hospital" ng-true-value="X" ng-false-value="" ng-model="hospitalValid" ng-change="checkForm('hospital')"/>
+                                                <span></span>
+                                                By checking this box, I acknowledge and understand:
+                                            </label>
+                                            <ul>
+                                                <li ng-if="xmp.r['SITUS'] === 'MN'">I declare that all individuals to be insured for <span class="variable-value">{{product_vars.hi_vars.name}}</span> have medical coverage in force that provides benefits for medical treatment including hospital, surgical and medical expenses.</li>
+                                                <li ng-if="xmp.r['SITUS'] === 'VT'">I declare that all individuals to be insured for <span class="variable-value">{{product_vars.hi_vars.name}}</span> have medical coverage in force that provides benefits for medical treatment including hospital, surgical and medical expenses.</li>
+                                                <li ng-if="xmp.r['SITUS'] === 'CA'">I declare that all individuals to be insured for <span class="variable-value">{{product_vars.hi_vars.name}}</span> have medical coverage in force that provides benefits for medical treatment including hospital, surgical and medical expenses.</li>
+                                                <li>I have received and read a copy of the Outline of Coverage or other disclosure document for the <span class="variable-value">{{product_vars.hi_vars.name}}</span>.</li>
+                                            </ul>
+                                            <div ng-hide="hospitalValid" style="color: red;">In order to continue, you must acknowledge that you have read the Outline of Coverage by checking the box above.</div>
+                                        </div>
+                                        <div ng-hide="hospitalReady" style="color: red;">You must read the Outline of Coverage and check the box that will appear upon reading.</div>
+                                        <div ng-if="!hospitalReady || !hospitalValid">
+                                            <input type="hidden" id="hospital_error" name="hospital_error" ng-model="hospital_error" required/>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="signature-block">
+                                        <h4 class="signature-header">Fraud Warnings</h4>
+                                        <p><strong>Read the Fraud Warnings</strong></p>
+                                        <p><a href="pdf/FraudWarnings.pdf" target="_blank" ng-click="fraudReady = true">Click here to read Fraud Warnings</a></p>
+
+                                        <div class="form-check-grp" ng-if="fraudReady">
+                                            <label>
+                                                <input type="checkbox" class="user-checkbox" id="fraud" name="fraud" ng-true-value="X" ng-false-value="" ng-model="fraudValid" ng-change="checkForm('fraud')"/>
+                                                <span></span>
+                                                By checking this box, I acknowledge that I have read the Fraud Warnings.
+                                            </label>
+                                            <div ng-hide="fraudValid" style="color: red;">In order to continue, you must acknowledge that you have read the Fraud Warnings by checking the box above.</div>
+                                        </div>
+                                        <div ng-hide="fraudReady" style="color: red;">You must read the Fraud Warnings and check the box that will appear upon reading.</div>
+                                        <div ng-if="!fraudReady || !fraudValid">
+                                            <input type="hidden" id="fraud_error" name="fraud_error" ng-model="fraud_error" required/>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="enrollment-form-panel">
+                            <div class="enrollment-form-panel-header">
+                                <i class="fa fa-tasks"></i>
+                                <h3 class="enrollment-form-panel-title">Declarations and Signature</h3>
+                            </div>
+                            <div class="enrollment-form-panel-body">
+
+                                <div class="enrollment-form-panel-subcontent">
+                                    <div class="signature-block" ng-if="xmp.r['PROD_AI'] === 'X'">
+                                        <h4 class="signature-header"><span class="variable-value">{{product_vars.ai_vars.name}}</span> Declarations</h4>
+                                        <p><strong>Your Hospital Indemnity certificate provides limited benefits. Read your certificate carefully.</strong></p>
+                                        <p>By signing below, I acknowledge:</p>
+                                        <ol>
+                                            <li>I have read this enrollment form and declare that all information I have given is true and complete to the best of my knowledge and belief.</li>
+                                            <li>I declare that I am actively at work on the date I am enrolling. I understand that if I am not actively at work on the scheduled effective date of insurance, such insurance will not take effect until I return to active work.</li>
+                                            <li ng-if="xmp.r['AI_COV'] !== 'EE'">I understand that, on the date dependent insurance for a person is scheduled to take effect, the dependent must not be confined at home under a physician’s care, receiving or applying for disability benefits from any source, or Hospitalized.  If the dependent does not meet this requirement on such date, the insurance will take effect on the date the dependent is no longer confined, receiving or applying for disability benefits from any source, or Hospitalized. <strong>Hospitalized</strong> means admission for inpatient care in a hospital; receipt of care in a hospice facility, intermediate care facility, or long term care facility; or receipt of the following treatment wherever performed: chemotherapy, radiation therapy, or dialysis.</li>
+                                            <li ng-if="general_vars.pay_deduct_value === 'Y' && xmp.r['SITUS'] !== 'CA'">I authorize my employer to deduct the required contributions from my earnings for my coverage. This authorization applies to such coverage until I rescind it in writing.</li>
+                                            <li ng-if="general_vars.pay_deduct_value === 'Y' && xmp.r['SITUS'] === 'CA'">I understand that if I do not sign the payment authorization below, coverage for which contributions are required will not take effect until I have provided such authorization.</li>
+                                            <li ng-if="xmp.r['SITUS'] === 'NH'"><span style="font-size:15px; font-weight:bold;">The Accident Only Insurance certificate provides limited benefits. Read your Accident Only Insurance certificate carefully.</span></li>
+                                            <li>I have read the applicable Fraud Warning(s) provided in this enrollment form.</li>
+                                        </ol>
+                                        <p ng-if="xmp.r['SITUS'] === 'NY'"><strong>New York (only applies to Accident and Health Insurance): Any person who knowingly and with intent to defraud any insurance company or other person files an application for insurance or statement of claim containing any materially false information, or conceals for the purpose of misleading, information concerning any fact material thereto, commits a fraudulent insurance act, which is a crime, and shall also be subject to a civil penalty not to exceed five thousand dollars and the stated value of the claim for each such violation.</strong></p>
+                                    </div>
+
+                                    <div class="signature-block" ng-if="xmp.r['PROD_CI'] === 'X'">
+                                        <h4 class="signature-header"><span class="variable-value">{{product_vars.ci_vars.name}}</span> Declarations</h4>
+                                        <p><strong>Your Hospital Indemnity certificate provides limited benefits. Read your certificate carefully.</strong></p>
+                                        <p>By signing below, I acknowledge:</p>
+                                        <ol>
+                                            <li>I have read this enrollment form and declare that all information I have given is true and complete to the best of my knowledge and belief.</li>
+                                            <li>I declare that I am actively at work on the date I am enrolling. I understand that if I am not actively at work on the scheduled effective date of insurance, such insurance will not take effect until I return to active work.</li>
+                                            <!-- critical 4-tier -->
+                                            <li ng-if="xmp.r['CI_COV'] !== 'EE'">I understand that, on the date dependent insurance for a person is scheduled to take effect, the dependent must not be confined at home under a physician’s care, receiving or applying for disability benefits from any source, or Hospitalized.  If the dependent does not meet this requirement on such date, the insurance will take effect on the date the dependent is no longer confined, receiving or applying for disability benefits from any source, or Hospitalized. <strong>Hospitalized</strong> means admission for inpatient care in a hospital; receipt of care in a hospice facility, intermediate care facility, or long term care facility; or receipt of the following treatment wherever performed: chemotherapy, radiation therapy, or dialysis.</li>
+                                            <!-- critical 3-tier -->
+                                            <!--<li ng-if="xmp.r['CI_OPT1'] === 'X' || xmp.r['CI_OPT2'] === 'X'">I understand that, on the date dependent insurance for a person is scheduled to take effect, the dependent must not be confined at home under a physician’s care, receiving or applying for disability benefits from any source, or Hospitalized.  If the dependent does not meet this requirement on such date, the insurance will take effect on the date the dependent is no longer confined, receiving or applying for disability benefits from any source, or Hospitalized. <strong>Hospitalized</strong> means admission for inpatient care in a hospital; receipt of care in a hospice facility, intermediate care facility, or long term care facility; or receipt of the following treatment wherever performed: chemotherapy, radiation therapy, or dialysis.</li>-->
+                                            <li ng-if="general_vars.pay_deduct_value === 'Y' && xmp.r['SITUS'] !== 'CA' && xmp.r['SITUS'] !== 'NH'">I authorize my employer to deduct the required contributions from my earnings for my coverage. This authorization applies to such coverage until I rescind it in writing.</li>
+                                            <li ng-if="general_vars.pay_deduct_value === 'Y' && xmp.r['SITUS'] === 'NH'">I authorize my employer to deduct the required contributions from my earnings for my coverage. This authorization applies to such coverage until I rescind it in writing. Your Critical Illness certificate provides limited benefits. Read your certificate carefully.</li>
+                                            <li ng-if="general_vars.pay_deduct_value === 'N' && xmp.r['SITUS'] === 'NH'">Your Critical Illness certificate provides limited benefits. Read your certificate carefully.</li>
+                                            <li ng-if="general_vars.pay_deduct_value === 'Y' && xmp.r['SITUS'] === 'CA'">I understand that if I do not sign the payment authorization below, coverage for which contributions are required will not take effect until I have provided such authorization.</li>
+                                            <li ng-if="xmp.r['SITUS'] === 'AR'">I declare that no person proposed for Critical Illness coverage is covered under any Title XIX program (Medicaid or any similarly named program).</li>
+                                            <li ng-if="xmp.r['SITUS'] === 'CT'">I declare that no person proposed for Specified Disease coverage is covered under any Title XIX program (Medicaid or any similarly named program) and that I understand that no person covered under any Title XIX program can be covered under the Specified Disease group policy.</li>
+                                            <li ng-if="xmp.r['SITUS'] === 'ID'">I declare that no person proposed for Critical Illness coverage is covered under any Title XIX program (Medicaid or any similarly named program).</li>
+                                            <li ng-if="xmp.r['SITUS'] === 'ME'">I declare that no person proposed for Specified Disease coverage is covered under any Title XIX program (Medicaid or any similarly named program) and I acknowledge that I have received a Shopper's Guide to Cancer Insurance.</li>
+                                            <li ng-if="xmp.r['SITUS'] === 'WV'">I declare that no person proposed for Specified Disease coverage is covered under any Title XIX program (Medicaid or any similarly named program).</li>
+                                            <li ng-if="xmp.r['SITUS'] === 'NH'"><strong>The Critical Illness certificate provides limited benefits. Read your Critical Illness certificate carefully.</strong></li>
+                                            <li>I have read the applicable Fraud Warning(s) provided in this enrollment form.</li>
+                                        </ol>
+                                        <p ng-if="xmp.r['SITUS'] === 'NY'"><strong>New York (only applies to Accident and Health Insurance): Any person who knowingly and with intent to defraud any insurance company or other person files an application for insurance or statement of claim containing any materially false information, or conceals for the purpose of misleading, information concerning any fact material thereto, commits a fraudulent insurance act, which is a crime, and shall also be subject to a civil penalty not to exceed five thousand dollars and the stated value of the claim for each such violation.</strong></p>
+                                    </div>
+
+                                    <div class="signature-block" ng-if="xmp.r['PROD_HI'] === 'X'">
+                                        <h4 class="signature-header"><span class="variable-value">{{product_vars.hi_vars.name}}</span> Declarations</h4>
+                                        <p><strong>Your Hospital Indemnity certificate provides limited benefits. Read your certificate carefully.</strong></p>
+                                        <p>By signing below, I acknowledge:</p>
+                                        <ol>
+                                            <li>I have read this enrollment form and declare that all information I have given is true and complete to the best of my knowledge and belief.</li>
+                                            <li>I declare that I am actively at work on the date I am enrolling. I understand that if I am not actively at work on the scheduled effective date of insurance, such insurance will not take effect until I return to active work.</li>
+                                            <li ng-if="xmp.r['HI_COV'] !== 'EE'">I understand that, on the date dependent insurance for a person is scheduled to take effect, the dependent must not be confined at home under a physician’s care, receiving or applying for disability benefits from any source, or Hospitalized.  If the dependent does not meet this requirement on such date, the insurance will take effect on the date the dependent is no longer confined, receiving or applying for disability benefits from any source, or Hospitalized. <strong>Hospitalized</strong> means admission for inpatient care in a hospital; receipt of care in a hospice facility, intermediate care facility, or long term care facility; or receipt of the following treatment wherever performed: chemotherapy, radiation therapy, or dialysis.</li>
+                                            <li ng-if="general_vars.pay_deduct_value === 'Y' && xmp.r['SITUS'] !== 'CA'">I authorize my employer to deduct the required contributions from my earnings for my coverage. This authorization applies to such coverage until I rescind it in writing.</li>
+                                            <li ng-if="general_vars.pay_deduct_value === 'Y' && xmp.r['SITUS'] === 'CA'">I understand that if I do not sign the payment authorization below, coverage for which contributions are required will not take effect until I have provided such authorization.</li>
+                                            <li ng-if="xmp.r['SITUS'] === 'NH'"><span style="font-size:15px; font-weight:bold;">The <span class="variable-value">{{product_vars.hi_vars.name}}</span> certificate provides limited benefits. Read your Hospital Indemnity certificate carefully.</span></li>
+                                            <li>I have read the applicable Fraud Warning(s) provided in this enrollment form.</li>
+                                        </ol>
+                                        <p ng-if="xmp.r['SITUS'] === 'NY'"><strong>New York (only applies to Accident and Health Insurance): Any person who knowingly and with intent to defraud any insurance company or other person files an application for insurance or statement of claim containing any materially false information, or conceals for the purpose of misleading, information concerning any fact material thereto, commits a fraudulent insurance act, which is a crime, and shall also be subject to a civil penalty not to exceed five thousand dollars and the stated value of the claim for each such violation.</strong></p>
+                                    </div>
+
+                                    <div class="signature-block" ng-if="xmp.r['PROD_LP'] === 'X'">
+                                        <h4 class="signature-header"><span class="variable-value">{{product_vars.lp_vars.name}}</span> Declarations</h4>
+                                        <p><strong>Your <span class="variable-value">{{product_vars.lp_vars.name}}</span> certificate provides limited benefits. Read your certificate carefully.</strong></p>
+                                        <p>By clicking submit, I understand that there will be a payroll deduction of <span class="variable-value">$#.##</span> per <span class="variable-value">[pay period/month]</span> for this program. I authorize deductions from my wages for my required contributions. I understand my Plan is effective through <span class="variable-value">##/##/####</span> and that I cannot cancel it before that date, except for termination of employment, retirement or leave of absence.</p>
+                                    </div>
+
+                                    <div class="signature-block">
+                                        <h4 class="signature-header">Electronic Signature (eSignature)</h4>
+                                        <p>I acknowledge that I have read and understand the enrollment materials and all the notices, declarations and other documents provided. I agree to print and retain a copy of the enrollment form and disclosure statements, which will be displayed for my records. I understand that by entering my name and clicking the 'SUBMIT' button below at the end of the enrollment, I am providing my electronic signature and submitting my enrollment to MetLife.</p>
+                                    </div>
+                                </div>
+
+                                <div class="enrollment-form-panel-content">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-12 col-md-6">
+                                            <div class="form-group">
+                                                <label>Your Full Name:</label>
+                                                <input type="text" id="display_name" name="display_name" ng-model="displayName" class="form-control" disabled/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-12 col-md-6">
+                                            <div class="form-group">
+                                                <label>Type your name as shown:</label>
+                                                <input type="text" id="sign_name" name="sign_name" class="form-control" xmp-write-ador="xmp.r['SIGN_NAME']" ng-change="checkName()" required/>
+                                                <div class="other-error" ng-if="signature.sign_name.$error.required">
+                                                    Required
+                                                </div>
+                                                <div class="other-error" ng-if="!signature.sign_name.$error.required && !nameValid">
+                                                    Please enter you name as shown
+                                                    <input type="hidden" id="sign_name_error" name="sign_name_error" ng-model="sign_name_error" required/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-6">
+                                            <div class="form-group">
+                                                <label>Date Signed (MM/DD/YYYY):</label>
+                                                <input type="text" id="sign_date" name="sign_date" class="form-control" xmp-write-ador="xmp.r['SIGN_DATE']" disabled/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <input type="hidden" xmp-write-ador="xmp.r['HI_COV']"/>
+                        <input type="hidden" xmp-write-ador="xmp.r['SAVE_CONT']"/>
+                        <input type="hidden" xmp-write-ador="xmp.r['SIGN_STAMP']"/>
+                        <input type="hidden" xmp-write-ador="xmp.r['SIGN_PAGE']"/>
+
+                        <div class="submit-container">
+                            <p style="text-align: right;"><strong>The "submit" button will be enabled once all of the required fields have valid entries.</strong></p>
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <input type="button" class="btn btn-brand-4th" value="BACK" ng-click="goToPage(prevPage.fileName)"/>
+                                </div>
+                                <div class="col-xs-6" style="text-align: right;">
+                                    <input type="submit" id="btn-submit" class="btn btn-brand-2nd" value="SUBMIT" data-toggle="modal" ng-disabled="signature.$invalid" ng-click="xmp.r['SIGN_STAMP'] = getTimestamp(); xmp.r['SIGN_PAGE'] = 'X'; loadingModal();" />
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+    <div class="enrollment-footer"  ng-include="'templates/enrollment/enrollment_footer.html'"></div>
+
+</div>
+
+<!-- JS Global Compulsory -->
+<script type="text/javascript" src="https://getmetbenefits.com/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- JS Page Level -->
+<script type="text/javascript" src="js/jquery.mask.min.js"></script>
+<script type="text/javascript" src="js/moment.min.js"></script>
+<script type="text/javascript" src="js/moment-timezone-with-data.min.js"></script>
+
+<!-- JS Customization -->
+<script src="js/global/global.js"></script>
+<script src="js/enrollment/signature.js"></script>
+
+<!-- Input Masking -->
+<script>
+    $("#zip").mask("00000");
+    $("#phone").mask("000-000-0000");
+    $("#ssn").mask("000-00-0000");
+    $("#dob").mask("00/00/0000");
+</script>
+
+</body>
+</html>
