@@ -1,10 +1,10 @@
 [
-  {"coverage": "EE", "option": "HIGH", "rate": {"base": "46.31"}},
-  {"coverage": "EE+SP", "option": "HIGH", "rate": {"base": "114.11"}},
-  {"coverage": "EE+CH", "option": "HIGH", "rate": {"base": "83.81"}},
-  {"coverage": "FAM", "option": "HIGH", "rate": {"base": "157.50"}},
-  {"coverage": "EE", "option": "LOW", "rate": {"base": "23.15"}},
-  {"coverage": "EE+SP", "option": "LOW", "rate": {"base": "57.71"}},
-  {"coverage": "EE+CH", "option": "LOW", "rate": {"base": "41.90"}},
-  {"coverage": "FAM", "option": "LOW", "rate": {"base": "79.25"}}
+  {"coverage": "EE", "option": "HIGH", "rate": {"base": "8.99"}},
+  {"coverage": "EE+SP", "option": "HIGH", "rate": {"base": "16.42"}},
+  {"coverage": "EE+CH", "option": "HIGH", "rate": {"base": "19.32"}},
+  {"coverage": "FAM", "option": "HIGH", "rate": {"base": "24.21"}},
+  {"coverage": "EE", "option": "LOW", "rate": {"base": "5.01"}},
+  {"coverage": "EE+SP", "option": "LOW", "rate": {"base": "9.27"}},
+  {"coverage": "EE+CH", "option": "LOW", "rate": {"base": "10.89"}},
+  {"coverage": "FAM", "option": "LOW", "rate": {"base": "13.63"}}
 ]

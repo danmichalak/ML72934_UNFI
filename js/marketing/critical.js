@@ -15,6 +15,7 @@ var xmplOnReady = function() {
 
             // critical 4-tier
             xmpControllerDriverVar.scope.calc_vars = {
+                "age": "",
                 "option": "",
                 "coverage": "",
                 "rate": ""
@@ -31,15 +32,16 @@ var xmplOnReady = function() {
 
                 var obj = xmpControllerDriverVar.scope.calc_vars;
 
-                if (obj.option == "" || obj.coverage == "") {
+                if (obj.age == "" || obj.option == "" || obj.coverage == "") {
                     $(".rate-calc").html("<strong>All fields are required</strong>");
                 } else {
 
                     xmpControllerDriverVar.scope.$parent.getJson("json/critical-4tier.json", function (calcResponse) {
                         var calcData = calcResponse.data;
                         var rate = xmpControllerDriverVar.scope.$parent.getRate(calcData, obj);
-                        var amount = Number(rate.base);
-                        $(".rate-calc").html("Your rate is<strong> $" + amount + "</strong>");
+                        var amount = Number(rate[obj.coverage]);
+                        var amountStr = amount.toFixed(2);
+                        $(".rate-calc").html("Your rate is<strong> $" + amountStr + "</strong>");
                     });
                 }
 

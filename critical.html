@@ -76,6 +76,19 @@
                     <!-- critical 4-tier -->
                     <div class="card card-block">
                         <p>Enter your information below to see how much <span class="variable-value">{{product_vars.ci_vars.name}}</span> costs. With competitive employee rates, you can get coverage for monthly rates around the national average cost of a tankful of unleaded gas for a SUV.</p>
+                        <p>Age:</p>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4">
+                                <div class="form-group product-form-group">
+                                    <div class="product-input-wrapper">
+                                        <select class="form-control" id="age" name="age" ng-model="calc_vars.age" ng-change="resetRate()">
+                                            <option value="">Please select your age</option>
+                                            <option ng-repeat="n in range(18,99,1)" value="{{n}}" ng-selected="n == calc_vars.age">{{n}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <p>Option:</p>
                         <div class="row">
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4">

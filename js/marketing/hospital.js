@@ -37,7 +37,8 @@ var xmplOnReady = function() {
                         var calcData = calcResponse.data;
                         var rate = xmpControllerDriverVar.scope.$parent.getRate(calcData, obj);
                         var amount = Number(rate.base);
-                        $(".rate-calc").html("Your rate is<strong> $" + amount + "</strong>");
+                        var amountStr = amount.toFixed(2);
+                        $(".rate-calc").html("Your rate is<strong> $" + amountStr + "</strong>");
                     });
                 }
 
