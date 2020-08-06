@@ -184,21 +184,6 @@ var xmplOnReady = function() {
                 }
             };
 
-            xmpControllerDriverVar.scope.prodLegalUpdate = function() {
-
-                xmpControllerDriverVar.scope.xmp.r["LP_RATE"] = "0.00";
-
-                if (xmpControllerDriverVar.scope.xmp.r["PROD_LP"] !== "X") {
-                    xmpControllerDriverVar.scope.xmp.r["MISC10"] = "";
-                }
-
-                if (xmpControllerDriverVar.scope.xmp.r["MISC10"] === "X") {
-                    xmpControllerDriverVar.scope.xmp.r["LP_RATE"] = "8.50";
-                }
-
-                xmpControllerDriverVar.scope.prodTotalUpdate();
-            };
-
             xmpControllerDriverVar.scope.prodTotalUpdate = function() {
 
                 xmpControllerDriverVar.scope.xmp.r["TOTAL_RATE"] = "0.00";
@@ -206,7 +191,6 @@ var xmplOnReady = function() {
                 var aiRate = Number(xmpControllerDriverVar.scope.xmp.r["AI_RATE"]);
                 var ciRate = Number(xmpControllerDriverVar.scope.xmp.r["CI_RATE"]);
                 var hiRate = Number(xmpControllerDriverVar.scope.xmp.r["HI_RATE"]);
-                var lpRate = Number(xmpControllerDriverVar.scope.xmp.r["LP_RATE"]);
                 var totalRate = 0;
 
                 if (!aiRate || aiRate === NaN) {
@@ -221,11 +205,7 @@ var xmplOnReady = function() {
                     hiRate = 0;
                 }
 
-                if (!lpRate || lpRate === NaN) {
-                    lpRate = 0;
-                }
-
-                totalRate = aiRate + ciRate + hiRate + lpRate;
+                totalRate = aiRate + ciRate + hiRate;
 
                 xmpControllerDriverVar.scope.xmp.r["TOTAL_RATE"] = totalRate.toFixed(2);
 
@@ -258,7 +238,6 @@ var xmplOnReady = function() {
             xmpControllerDriverVar.scope.prodAccidentUpdate();
             xmpControllerDriverVar.scope.prodCriticalUpdate();
             xmpControllerDriverVar.scope.prodHospitalUpdate();
-            xmpControllerDriverVar.scope.prodLegalUpdate();
 
             // critical 3-tier
             /*xmpControllerDriverVar.scope.setSpAge();*/

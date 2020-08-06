@@ -108,13 +108,8 @@
                                             <span></span>
                                             <span class="variable-value">{{product_vars.hi_vars.name}}</span>
                                         </label>
-                                        <label>
-                                            <input type="checkbox" id="prod_lp" name="prod_lp" class="user-checkbox" ng-true-value="X" ng-false-value="" xmp-write-ador="xmp.r['PROD_LP']" ng-change="prodLegalUpdate()"/>
-                                            <span></span>
-                                            <span class="variable-value">{{product_vars.lp_vars.name}}</span>
-                                        </label>
                                     </div>
-                                    <div class="other-error" ng-if="xmp.r['PROD_AI'] !== 'X' && xmp.r['PROD_HI'] !== 'X' && xmp.r['PROD_CI'] !== 'X' && xmp.r['PROD_LP'] !== 'X'">
+                                    <div class="other-error" ng-if="xmp.r['PROD_AI'] !== 'X' && xmp.r['PROD_HI'] !== 'X' && xmp.r['PROD_CI'] !== 'X'">
                                         <input type="hidden" name="select_product" ng-model="selectProduct" required/>
                                         Please select at least one option.
                                     </div>
@@ -411,32 +406,6 @@
                                     <p><strong>Medicare Disclosure and Cancer Insurance Shopper's Guide</strong></p>
                                     <p><a href="pdf/mdcisg.pdf" target="_blank">Please click here to read a copy of the Medicare Disclosure and Cancer Insurance Shopper's Guide.</a></p>
                                 </div>
-                            </div>
-                        </div>
-
-                        <div class="enrollment-form-panel" ng-if="xmp.r['PROD_LP'] === 'X'">
-                            <div class="enrollment-form-panel-body">
-                                <div class="row">
-                                    <div class="col-xs-6"><span class="variable-value">{{product_vars.lp_vars.name}}</span></div>
-                                    <div class="col-xs-6" style="text-align: right;">Monthly Premium: {{xmp.r["LP_RATE"] | currency}}</div>
-                                </div>
-
-                                <div class="enrollment-form-panel-content">
-
-                                    <div class="form-check-grp">
-                                        <label>
-                                            <input type="checkbox" id="legal_select" name="legal_select" class="user-checkbox" ng-true-value="X" ng-false-value="" xmp-write-ador="xmp.r['MISC10']" ng-change="prodLegalUpdate()"/>
-                                            <span></span>
-                                            Yes. Please enroll me for the upcoming Plan <span class="variable-value">[pay period/month]</span> <span class="variable-value">##/##/####</span> - <span class="variable-value">##/##/####</span> for <span class="variable-value">$#.##</span> per <span class="variable-value">[pay period/month]</span>.
-                                        </label>
-                                    </div>
-                                    <div class="other-error" ng-if="xmp.r['MISC10'] !== 'X'">
-                                        <input type="hidden" name="legal_select_error" ng-model="legalSelectError" required/>
-                                        Required
-                                    </div>
-
-                                </div>
-
                             </div>
                         </div>
 

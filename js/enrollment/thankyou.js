@@ -17,7 +17,6 @@ var xmplOnReady = function() {
                 "PROD_AI", "AI_OPT", "AI_COV", "AI_RATE",
                 "PROD_CI", "CI_OPT", "CI_OPT1", "CI_OPT2", "CI_COV", "CI_RATE",
                 "PROD_HI", "HI_OPT", "HI_COV", "HI_RATE",
-                "PROD_LP", "LP_RATE",
                 "TOTAL_RATE"
             ]}, function (data) {
 
@@ -43,9 +42,6 @@ var xmplOnReady = function() {
             xmpControllerDriverVar.scope.xmp.r["HI_OPT"] = data["HI_OPT"];
             xmpControllerDriverVar.scope.xmp.r["HI_COV"] = data["HI_COV"];
             xmpControllerDriverVar.scope.xmp.r["HI_RATE"] = data["HI_RATE"];
-
-            xmpControllerDriverVar.scope.xmp.r["PROD_LP"] = data["PROD_LP"];
-            xmpControllerDriverVar.scope.xmp.r["LP_RATE"] = data["LP_RATE"];
 
             xmpControllerDriverVar.scope.xmp.r["TOTAL_RATE"] = data["TOTAL_RATE"];
 

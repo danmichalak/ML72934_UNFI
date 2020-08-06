@@ -25,10 +25,6 @@
     "hi_vars": {
       "name": "Hospital Indemnity Insurance",
       "page": "hospital.html"
-    },
-    "lp_vars": {
-      "name": "Legal Plans",
-      "page": "legal.html"
     }
   },
   "enrollment_pages": [
