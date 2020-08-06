@@ -56,7 +56,7 @@
             <div class="product-card-copy">
                 <p>Those who have been struck by a serious illness often find that their medical and disability plans fall short financially, leaving them accountable for significant out-of-pocket expenses.</p>
                 <p><strong>MetLife <span class="variable-value">{{product_vars.ci_vars.name}}</span></strong> complements your existing health care plan by <strong>providing a lump-sum payment</strong> if you or a loved one is diagnosed with a covered condition, such as cancer<sup>1</sup>, heart attack or stroke.<sup>2</sup> And, you get to decide how to spend the money.</p>
-                <p><span class="variable-value">Plus, your plan includes something called the Health Screening Benefit.* You'll get an annual benefit of $[##] just for taking one of the eligible screening/preventive measures like a mammogram or annual physical exam.</span></p>
+                <p><span class="variable-value">Plus, your plan includes something called the Health Screening Benefit.* You'll get an annual benefit of $50 just for taking one of the eligible screening/preventive measures like a mammogram or annual physical exam.</span></p>
                 <p class="enroll-now">
                     <a href="register.html" target="_blank" class="btn-brand-1st table" role="button" onClick="ga('send', 'event', 'Enroll Now', 'Click', 'Enroll_Now_Critical');">Get Coverage &ndash; Enroll Now</a>
                 </p>
@@ -83,8 +83,8 @@
                                     <div class="product-input-wrapper">
                                         <select class="form-control" id="option" name="option" ng-model="calc_vars.option" ng-change="resetRate()">
                                             <option value="">Please select your option</option>
-                                            <option value="15">$15,000</option>
-                                            <option value="30">$30,000</option>
+                                            <option value="10">$10,000</option>
+                                            <option value="20">$20,000</option>
                                         </select>
                                     </div>
                                 </div>
@@ -111,69 +111,6 @@
                         </div>
                         <div class="rate-calc" style="margin-bottom: 20px;"></div>
                     </div>
-                    <!-- critical 3-tier -->
-                    <!--<div class="card card-block">
-                        <p>Enter your information below to see how much <span class="variable-value">{{product_vars.ci_vars.name}}</span> costs. With competitive employee rates, you can get coverage for monthly rates around the national average cost of a tankful of unleaded gas for a SUV.</p>
-                        <p>Benefit Amount</p>
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-5">
-                                <div class="form-group product-form-group">
-                                    <div class="product-input-wrapper">
-                                        <select class="form-control" id="member_amount" name="member_amount" ng-model="calc_vars.member.amount" ng-change="resetRate()">
-                                            <option value="">Please select your option</option>
-                                            <option value="10000">$10,000</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <p>Age as of {{general_vars.as_of_date}}:</p>
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-5">
-                                <div class="form-group product-form-group">
-                                    <div class="product-input-wrapper">
-                                        <select class="form-control" id="member_age" name="member_age" ng-model="calc_vars.member.age" ng-change="resetRate()">
-                                            <option value="">Please select your age</option>
-                                            <option ng-repeat="n in $parent.range(18,99,1)" value="{{n}}">{{n}}</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-check-grp">
-                            <label>
-                                <input type="checkbox" id="spouse_check" name="spouse_check" class="user-checkbox" ng-true-value="X" ng-false-value="" ng-model="calc_vars.spouse.check" ng-change="calc_vars.spouse.age = ''; resetRate()"/>
-                                <span></span>
-                                <span class="variable-value">{{general_vars.sp_dp_mp}}</span> ($<span class="variable-value">{{calc_vars.spouse.amount | number}}</span> benefit amount)
-                            </label>
-                        </div>
-                        <div ng-if="calc_vars.spouse.check === 'X'" class="row">
-                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-5">
-                                <div class="form-group product-form-group">
-                                    <div class="product-input-wrapper">
-                                        <select class="form-control" id="spouse_age" name="spouse_age" ng-model="calc_vars.spouse.age" ng-change="resetRate()">
-                                            <option value="">Please select your {{general_vars.sp_dp_mp}} age</option>
-                                            <option ng-repeat="n in $parent.range(18,99,1)" value="{{n}}">{{n}}</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-check-grp">
-                            <label>
-                                <input type="checkbox" id="child_check" name="child_check" class="user-checkbox" ng-true-value="X" ng-false-value="" ng-model="calc_vars.child.check" ng-change="resetRate()"/>
-                                <span></span>
-                                Children ($<span class="variable-value">{{calc_vars.child.amount | number}}</span> benefit amount)
-                            </label>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4">
-                                <a id="calc-submit" style="margin-top: 10px;" class="btn-brand-1st table" role="button" ng-click="calcSubmit(); ga('send', 'event', 'Calculator', 'Click', 'Calculator_Accident');">See Your Quote</a>
-                            </div>
-                        </div>
-                        <div class="rate-calc" style="margin-bottom: 20px;"></div>
-                    </div>-->
                 </div>
             </div>
 

@@ -46,23 +46,6 @@ var xmplOnReady = function() {
                 xmpControllerDriverVar.scope.hasCh = true;
             }
 
-            // critical 3-tier
-            /*if (
-                xmpControllerDriverVar.scope.xmp.r["AI_COV"] === "EE+SP" || xmpControllerDriverVar.scope.xmp.r["AI_COV"] === "FAM" ||
-                xmpControllerDriverVar.scope.xmp.r["HI_COV"] === "EE+SP" || xmpControllerDriverVar.scope.xmp.r["HI_COV"] === "FAM" ||
-                xmpControllerDriverVar.scope.xmp.r["CI_OPT1"] === "X"
-            ) {
-                xmpControllerDriverVar.scope.hasSp = true;
-            }
-
-            if (
-                xmpControllerDriverVar.scope.xmp.r["AI_COV"] === "EE+CH" || xmpControllerDriverVar.scope.xmp.r["AI_COV"] === "FAM" ||
-                xmpControllerDriverVar.scope.xmp.r["HI_COV"] === "EE+CH" || xmpControllerDriverVar.scope.xmp.r["HI_COV"] === "FAM" ||
-                xmpControllerDriverVar.scope.xmp.r["CI_OPT2"] === "X"
-            ) {
-                xmpControllerDriverVar.scope.hasCh = true;
-            }*/
-
             var inOptions = {
                 adors: ["XMPieRecipientKey",
                     "CH1_NAME", "CH1_DOB", "CH1_GENDER",

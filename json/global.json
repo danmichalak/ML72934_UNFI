@@ -1,17 +1,17 @@
 {
   "general_vars": {
-    "group": "XYZ Company",
-    "grp_num": "123456789",
-    "grp_abbr": "XYZ",
-    "gpc": "XYZ",
-    "a_an": "a/an",
-    "greeting": "employee/associate",
+    "group": "United Natural Foods, Inc.",
+    "grp_num": "170215",
+    "grp_abbr": "UNFI",
+    "gpc": "N/A",
+    "a_an": "a",
+    "greeting": "employee",
     "sp_dp": "Spouse/Domestic Partner*",
     "sp_dp_mp": "Spouse/Domestic Partner",
     "sp_dp_dis": "*Domestic Partner includes your registered Domestic Partner if you and your Domestic Partner are registered as domestic partners, civil union partners or reciprocal beneficiaries with a government agency or office where such registration is available. It also includes your non-registered Domestic Partner in whom you have an insurable interest. By enrolling such Domestic Partner for coverage and signing this enrollment form, you are attesting to your insurable interest.",
     "as_of_date": "12/31/2020",
-    "situs": "US",
-    "pay_deduct_value": "N"
+    "situs": "RI",
+    "pay_deduct_value": "Y"
   },
   "product_vars": {
     "ai_vars": {

@@ -56,15 +56,6 @@ var xmplOnReady = function() {
                 xmpControllerDriverVar.scope.hasSp = true;
             }
 
-            // critical 3-tier
-            /*if (
-                data['AI_COV'] === 'EE+SP' || data['AI_COV'] === 'FAM' ||
-                data['HI_COV'] === 'EE+SP' || data['HI_COV'] === 'FAM' ||
-                data['CI_OPT1'] === 'X'
-            ) {
-                xmpControllerDriverVar.scope.hasSp = true;
-            }*/
-
             // load in global variables
             xmpControllerDriverVar.scope.$parent.getJson("json/global.json", function(response) {
 

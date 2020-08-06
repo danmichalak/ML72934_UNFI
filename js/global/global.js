@@ -90,16 +90,6 @@ $(document).ready(function() {
                 hasDep = true;
             }
 
-            // critical 3-tier
-            /*if (
-                adors["AI_COV"] === "EE+SP" || adors["AI_COV"] === "EE+CH" || adors["AI_COV"] === "FAM" ||
-                adors["CI_OPT1"] === "X" || adors["CI_OPT2"] === "X" ||
-                adors["HI_COV"] === "EE+SP" || adors["HI_COV"] === "EE+CH" || adors["HI_COV"] === "FAM"
-            ) {
-                $scope.pagesUsed.push($scope.pages[2]); // dependent information
-                hasDep = true;
-            }*/
-
             $scope.pagesUsed.push($scope.pages[3]); // enrollment summary
             $scope.pagesUsed.push($scope.pages[4]); // signature
             $scope.pagesUsed.push($scope.pages[5]); // thank you
