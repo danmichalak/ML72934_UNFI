@@ -69,6 +69,7 @@ var xmplOnReady = function() {
                     xmpControllerDriverVar.scope.$parent.getJson("json/critical-4tier.json", function (ciCalcResponse) {
 
                         xmpControllerDriverVar.scope.ci_calc_vars = {
+                            "age": xmpControllerDriverVar.scope.xmp.r["AGE"],
                             "option": xmpControllerDriverVar.scope.xmp.r["CI_OPT"],
                             "coverage": xmpControllerDriverVar.scope.xmp.r["CI_COV"],
                             "rate": ""
@@ -77,7 +78,7 @@ var xmplOnReady = function() {
                         var ciCalcData = ciCalcResponse.data;
                         var ciRate = xmpControllerDriverVar.scope.$parent.getRate(ciCalcData, xmpControllerDriverVar.scope.ci_calc_vars);
 
-                        xmpControllerDriverVar.scope.xmp.r["CI_RATE"] = ciRate.base;
+                        xmpControllerDriverVar.scope.xmp.r["CI_RATE"] = ciRate[xmpControllerDriverVar.scope.xmp.r["CI_COV"]];
 
                         xmpControllerDriverVar.scope.prodTotalUpdate();
                     });
