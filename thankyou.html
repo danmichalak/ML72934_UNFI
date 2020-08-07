@@ -74,9 +74,7 @@
                 <div class="thankyou-block" ng-if="xmp.r['PROD_CI'] === 'X'">
                     <p><span class="variable-value">{{product_vars.ci_vars.name}}</span> Monthly Premium: {{xmp.r['CI_RATE'] | currency}}
                         <br/>
-                        Option:
-                        <span ng-if="xmp.r['CI_OPT'] === '15'">$15,000</span>
-                        <span ng-if="xmp.r['CI_OPT'] === '30'">$30,000</span>
+                        Option: ${{(xmp.r['CI_OPT'] * 1000) | number}}
                         <br/>
                         Level:
                         <span ng-if="xmp.r['CI_COV'] === 'EE'">Employee Only</span>
