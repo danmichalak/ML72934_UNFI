@@ -18,6 +18,7 @@ var xmplOnReady = function() {
                 "age": "",
                 "option": "",
                 "coverage": "",
+                "smoker": "",
                 "rate": ""
             };
 
@@ -32,7 +33,7 @@ var xmplOnReady = function() {
 
                 var obj = xmpControllerDriverVar.scope.calc_vars;
 
-                if (obj.age == "" || obj.option == "" || obj.coverage == "") {
+                if (obj.age == "" || obj.option == "" || obj.coverage == "" || obj.smoker == "") {
                     $(".rate-calc").html("<strong>All fields are required</strong>");
                 } else {
 

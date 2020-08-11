@@ -72,6 +72,7 @@ var xmplOnReady = function() {
                             "age": xmpControllerDriverVar.scope.xmp.r["AGE"],
                             "option": xmpControllerDriverVar.scope.xmp.r["CI_OPT"],
                             "coverage": xmpControllerDriverVar.scope.xmp.r["CI_COV"],
+                            "smoker": xmpControllerDriverVar.scope.xmp.r["MISC02"],
                             "rate": ""
                         };
 

@@ -118,6 +118,20 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <p>Have you smoked cigarettes, pipes, or cigars or used tobacco in any form in the past 1 year?</p>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4">
+                                <div class="form-group product-form-group">
+                                    <div class="product-input-wrapper">
+                                        <select class="form-control" id="smoker" name="smoker" ng-model="calc_vars.smoker" ng-change="resetRate()">
+                                            <option value="">Please select your option</option>
+                                            <option value="Y">Yes</option>
+                                            <option value="N">No</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4">
                                 <a id="calc-submit" class="btn-brand-1st table" role="button" ng-click="calcSubmit(); ga('send', 'event', 'Calculator', 'Click', 'Calculator_Accident');">See Your Quote</a>
                             </div>
