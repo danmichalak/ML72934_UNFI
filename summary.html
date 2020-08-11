@@ -116,7 +116,7 @@
                             <div class="summary-product-row" ng-if="xmp.r['PROD_CI']">
                                 <p><u><strong><span class="variable-value">{{product_vars.ci_vars.name}}</span></strong></u></p>
                                 <p><strong>Selected Option:</strong>
-                                    ${{(xmp.r['CI_OPT'] * 1000) | number}}
+                                    ${{xmp.r['CI_OPT'] | number}}
                                 </p>
                                 <p><strong>Selected Coverage:</strong>
                                     <span ng-if="xmp.r['CI_COV'] === 'EE'">Employee Only</span>
